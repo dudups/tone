@@ -1,0 +1,24 @@
+{{- range tuple "epic" "feature" "story" "task"}}
+{{ . }}:
+  key: {{ . }}
+  content: |-
+    作为 <用户角色>
+
+    我想要 <结果>
+
+    以便于 <目的> 
+
+    验收标准：
+{{- end }}
+bug:
+  key: bug
+  content: |-
+    反馈渠道：
+
+    简述：
+
+    环境信息：
+
+    版本信息：
+
+    复现步骤：

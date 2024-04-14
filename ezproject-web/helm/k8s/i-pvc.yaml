@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: i-kfs-pvc
+spec:
+  storageClassName: "kfs"
+  volumeName: i-kfs-pv
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti

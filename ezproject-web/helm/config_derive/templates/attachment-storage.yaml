@@ -1,0 +1,1 @@
+{{.Values.storage | toPrettyJson}}

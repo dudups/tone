@@ -1,0 +1,6 @@
+{
+  "msgtype": "markdown",
+  "markdown": {
+    "content": "$!model.escapeMdContent"
+  }
+}

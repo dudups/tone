@@ -1,0 +1,8 @@
+properties:
+  #foreach( $field in $fields )
+  $field.key:
+    type: $field.valueType.esDataType
+    #if( $field.valueType.esDataType == "date" )
+    format: epoch_millis
+    #end
+  #end

@@ -1,0 +1,59 @@
+app:
+  env: online
+  endpoint:
+    format: http://${EZONE_URL:127.0.0.1}
+server:
+  port: 8501
+db:
+  url: jdbc:mysql://127.0.0.1:3306/ezproject?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF8&useSSL=false&allowMultiQueries=true&rewriteBatchedStatements=true
+  username: root
+  password: Mysql123!@#
+es:
+  uris:
+    - http://127.0.0.1:9200
+  username:
+  password:
+redis:
+  host: 127.0.0.1
+  port: 6379
+  password: Redis123!@#
+  db: 4
+mq:
+  address: 127.0.0.1:9876
+sso:
+  endpoint: http://127.0.0.1/v1/ezbase/iam
+  interceptor:
+    exclude:
+      pattern: /monitor/**;/project/api/**;/swagger/**;/project/company/**
+ezadmin:
+  endpoint: http://127.0.0.1/v1/admin
+  interceptor:
+    pattern: /project/company/**
+storage:
+  selector: fileStorage
+  fileStorage:
+    rootPath: /app/storage
+internal:
+  api:
+    token: 123456
+  eztest:
+    endpoint: http://127.0.0.1/v1/eztest
+    token: 123456
+  ezcode:
+    endpoint: http://127.0.0.1/v1/ezcode
+    token: 123456
+  ezdeploy:
+    endpoint: http://127.0.0.1/v1/ezdeploy
+    token: 123456
+  ezpipeline:
+    endpoint: http://127.0.0.1/v1/ezpipeline
+    token: 123456
+dailyIncrLimit:
+  company:
+    project: -1
+    portfolio: -1
+  project:
+    card: -1
+project:
+  defaultConfig:
+    planKeepDays: 0

@@ -1,0 +1,11 @@
+{
+  "msgtype": "markdown",
+  "markdown": {
+    "title": "$!model.escapeTitle",
+    "text": "$!model.escapeMdContent"
+  },
+  "at": {
+    "atMobiles": [],
+    "isAtAll": false
+  }
+}

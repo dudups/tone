@@ -1,0 +1,26 @@
+## 卡片创建更新时的邮件通知模板
+$!userNickOrName $!{operationType.cnName}了卡片：[$projectKey-$!FieldUtil.getSeqNum($!cardDetail)]<a href="$!cardUrl">$cardTitle</a>
+<table border="0px" style="table-layout: fixed; border: 0; width: 800px">
+    <tr>
+        <td style="text-align: right; width: 150px">项目名称：</td>
+        <td style="width: 650px; word-break: keep-all; text-align: left">$!StringEscapeUtils.escapeHtml($!projectName)</td>
+    </tr>
+    <tr>
+        <td style="text-align: right; vertical-align: top">卡片类型：</td>
+        <td style="word-break: keep-all; text-align: left">$!cardTypeName</td>
+    </tr>
+    <tr>
+        <td style="text-align: right; vertical-align: top">创建时间：</td>
+        <td style="word-break: keep-all; text-align: left">$!cardCreateTime</td>
+    </tr>
+    <tr>
+        <td style="text-align: right; vertical-align: top">负责人：</td>
+        <td style="word-break: keep-all; text-align: left">$!StringEscapeUtils.escapeHtml($!ownerUserNickNames)</td>
+    </tr>
+    #if( $cardPriority )
+    <tr>
+        <td style="text-align: right; vertical-align: top">优先级：</td>
+        <td style="word-break: keep-all; text-align: left">$!cardPriority</td>
+    </tr>
+    #end
+</table>

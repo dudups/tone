@@ -1,0 +1,4 @@
+properties:
+  types:
+    type: object
+    dynamic: false

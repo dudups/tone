@@ -1,0 +1,3 @@
+---
+# Source: resources/templates/es/project-card-schema-mapping.yaml
+dynamic: false

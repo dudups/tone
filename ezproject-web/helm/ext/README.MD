@@ -1,0 +1,1 @@
+支持localstorage: https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner.git

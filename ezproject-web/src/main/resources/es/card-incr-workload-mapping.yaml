@@ -1,0 +1,42 @@
+---
+# Source: resources/templates/es/card-incr-workload-mapping.yaml
+properties:
+  id:
+    type: long
+    index: true
+  cardId:
+    type: long
+    index: true
+  projectId:
+    type: long
+    index: true
+  companyId:
+    type: long
+    index: true
+  flowId:
+    type: long
+    index: true
+  createTime:
+    type: date
+    index: true
+  startTime:
+    type: date
+    index: true
+  endTime:
+    type: date
+    index: true
+  createUser:
+    type: keyword
+    index: true
+  owner:
+    type: keyword
+    index: true
+  incrResult:
+    type: keyword
+    index: true
+  description:
+    type: text
+    index: false
+  incrHours:
+    type: float
+    index: true

@@ -1,0 +1,10 @@
+properties:
+  lastModifyTime:
+    type: date
+    index: false
+  lastModifyUser:
+    type: keyword
+    index: false
+  content:
+    type: keyword
+    index: false

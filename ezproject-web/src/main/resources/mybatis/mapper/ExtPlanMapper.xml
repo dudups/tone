@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezone.ezproject.dal.mapper.ExtPlanMapper">
+    <select id="planCountGroupByProject" resultType="java.util.Map">
+        select count(`id`) as `count`, `project_id` from `plan` t where t.`project_id` in
+        <foreach collection="projectIds" close=")" open="(" separator="," item="projectId">
+            #{projectId}
+        </foreach>
+        group by `project_id`
+    </select>
+</mapper>

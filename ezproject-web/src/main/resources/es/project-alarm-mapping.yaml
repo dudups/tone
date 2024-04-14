@@ -1,0 +1,22 @@
+properties:
+  id:
+    type: keyword
+  projectId:
+    type: keyword
+  active:
+    type: boolean
+  createTime:
+    type: date
+    format: epoch_millis
+  creatUser:
+    type: keyword
+  lastModifyTime:
+    type: date
+    format: epoch_millis
+  lastModifyUser:
+    type: keyword
+  type:
+    type: keyword
+  alarmItem:
+    type: object
+    dynamic: false

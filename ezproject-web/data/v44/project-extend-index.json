@@ -1,0 +1,41 @@
+{
+  "properties": {
+    "key": {
+      "type": "keyword"
+    },
+    "name": {
+      "type": "keyword"
+    },
+    "description": {
+      "type": "keyword"
+    },
+    "createUser": {
+      "type": "keyword"
+    },
+    "lastModifyUser": {
+      "type": "keyword"
+    },
+    "companyId": {
+      "type": "long"
+    },
+    "topScore": {
+      "type": "long"
+    },
+    "createTime": {
+      "type": "date",
+      "format": "epoch_millis"
+    },
+    "lastModifyTime": {
+      "type": "date",
+      "format": "epoch_millis"
+    },
+    "startTime": {
+      "type": "date",
+      "format": "epoch_millis"
+    },
+    "endTime": {
+      "type": "date",
+      "format": "epoch_millis"
+    }
+  }
+}

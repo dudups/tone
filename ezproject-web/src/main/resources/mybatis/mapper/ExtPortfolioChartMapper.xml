@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezone.ezproject.dal.mapper.ExtPortfolioChartMapper">
+    <insert id="batchInsert" parameterType="com.ezone.ezproject.dal.entity.PortfolioChart">
+        insert into portfolio_chart (`id`, `portfolio_id`, `title`,
+                                     `chart_type`, `create_time`, `create_user`,
+                                     `last_modify_time`, `last_modify_user`, `seq_num`
+        )
+        values
+        <foreach collection="list" separator="," item="item">
+            (#{item.id,jdbcType=BIGINT}, #{item.portfolioId,jdbcType=BIGINT}, #{item.title,jdbcType=VARCHAR},
+            #{item.chartType,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.createUser,jdbcType=VARCHAR},
+            #{item.lastModifyTime,jdbcType=TIMESTAMP}, #{item.lastModifyUser,jdbcType=VARCHAR}, #{item.seqNum,jdbcType=INTEGER}
+            )
+        </foreach>
+    </insert>
+</mapper>

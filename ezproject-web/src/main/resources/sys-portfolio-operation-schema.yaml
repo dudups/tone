@@ -1,0 +1,27 @@
+---
+# Source: resources/templates/sys-portfolio-operation-schema.yaml
+sysMemberFixedOps:
+  - PORTFOLIO_READ
+  - PORTFOLIO_MANAGE_UPDATE
+customMemberFixedOps:
+  - PORTFOLIO_READ
+  - PORTFOLIO_MANAGE_UPDATE
+groups:
+  - name: 基础权限
+    operations:
+      - key: PORTFOLIO_READ
+        name: 查看
+        tooltip: 具有项目集的所有功能的查看权限、甘特图、 报表的导出权限
+  - name: 空间管理
+    operations:
+      - key: PORTFOLIO_MANAGE_UPDATE
+        name: 空间管理设置
+        tooltip: 勾选此选项即可对项目集的设置进行修改
+  - name: 报表
+    operations:
+      - key: REPORT_CREATE
+        name: 新建
+      - key: REPORT_UPDATE
+        name: 编辑
+      - key: REPORT_DELETE
+        name: 删除

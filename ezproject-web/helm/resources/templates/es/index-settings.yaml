@@ -1,0 +1,8 @@
+analysis:
+  normalizer:
+    lowercase:
+      filter:
+        - lowercase
+        - asciifolding
+      type: custom
+      char_filter: []

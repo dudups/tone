@@ -1,0 +1,18 @@
+---
+# Source: resources/templates/es/card-bpm-flow-mapping.yaml
+properties:
+  date:
+    type: date
+    index: true
+  user:
+    type: keyword
+    index: true
+  flowId:
+    type: long
+    index: true
+  cardId:
+    type: long
+    index: true
+  flowDetail:
+    type: object
+    dynamic: false

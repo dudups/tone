@@ -1,0 +1,2 @@
+DELETE l2 FROM story_map_node l2 LEFT JOIN story_map_node l1 on l2.parent_id = l1.id WHERE l2.parent_id > 0 and l1.id is null;
+update story_map_node l2 LEFT JOIN story_map_node l1 on l2.parent_id = l1.id set l2.story_map_id=l1.story_map_id WHERE l2.story_map_id != l1.story_map_id;

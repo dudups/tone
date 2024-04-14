@@ -1,0 +1,3 @@
+---
+# Source: resources/templates/es/project-role-schema-mapping.yaml
+dynamic: false

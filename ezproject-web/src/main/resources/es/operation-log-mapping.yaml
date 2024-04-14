@@ -1,0 +1,28 @@
+properties:
+  id:
+    type: long
+    index: true
+  createTime:
+    type: date
+    index: true
+  operator:
+    type: keyword
+    index: true
+  ip:
+    type: keyword
+    index: true
+  detail:
+    type: text
+    index: false
+  projectId:
+    type: long
+    index: true
+  operateType:
+    type: keyword
+    index: true
+  resourceId:
+    type: keyword
+    index: true
+  value:
+    type: text
+    index: true

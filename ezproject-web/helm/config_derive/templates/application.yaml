@@ -1,0 +1,112 @@
+application:
+  env: {{ .Values.app.env }}
+server:
+  port: {{ .Values.server.port }}
+spring:
+  application:
+    name: ezproject-web
+  klock:
+    {{- if .Values.redis.sentinelServer}}
+    sentinelServer:
+{{ toYaml .Values.redis.sentinelServer | indent 6 }}
+    # masterName: string, sentinelAddresses: ["redis://..."]
+    {{- end }}
+    {{- if .Values.redis.clusterServer }}
+    clusterServer:
+{{ toYaml .Values.redis.clusterServer | indent 6 }}
+    # nodeAddresses: ["redis://..."]
+    {{- end }}
+    {{- if .Values.redis.address}}
+    address: {{ .Values.redis.address }}
+    {{- end }}
+    {{- if .Values.redis.password}}
+    password: {{.Values.redis.password}}
+    {{- end}}
+    database: {{ .Values.redis.db }}
+  datasource:
+    name: primaryDataSource
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: {{ .Values.db.url }}
+    username: {{ .Values.db.username }}
+    password: {{ .Values.db.password }}
+  elasticsearch:
+    rest:
+      uris:
+        {{- range .Values.es.uris }}
+        - {{ . }}
+        {{- end }}
+      read-timeout: 5s
+      connection-timeout: 5s
+      username: {{ .Values.es.username }}
+      password: {{ .Values.es.password }}
+relativeEzbaseStorage:
+  rootPath: {{ .Values.relativeEzbaseStorage.rootPath }}
+logging:
+  level:
+    com.ezone: {{ .Values.logging.level }}
+  log_level: {{ .Values.logging.level }}
+api:
+  doc:
+    global:
+      header:
+        companyName: x-company-name
+es:
+  prefix: {{ .Values.es.prefix }}
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml,classpath:mybatis/extmapper/*.xml
+  type-aliases-package: com.ezone.ezproject.dal.extmapper,com.ezone.ezproject.dal.mapper
+sso:
+  endpoint: {{ .Values.sso.endpoint }}
+  interceptor:
+    exclude:
+      pattern: /monitor/**;/project/api/**;/swagger/**;/project/company/**
+ezadmin:
+  endpoint: {{ .Values.ezadmin.endpoint }}
+  interceptor:
+      pattern: /project/company/**
+      exclude-pattern: []
+etag:
+  url:
+    pattern: /**/attachment/**/preview/**;/**/attachment/**/preview
+rocketmq:
+  name-server: {{ .Values.mq.address }}
+  producer:
+    group: ezproject-producer
+    cleanCardRecycleBinTopic: topic-ezproject-clean-card-recycle-bin
+    cleanCardDraftTopic: topic-ezproject-clean-card-draft
+    cleanInactivePlanTopic: topic-ezproject-clean-inactive-plan
+    noticeTopic: NOTIFICATION:SEND
+    cardEndTopic: CARD:END
+    billTopic: COMPANY_CONSUMPTION:UPDATE
+    billStorageBufferTopic: topic-ezproject-bill-storage-buffer-topic
+    companyAuditTopic: COMPANY_AUDIT:SEND
+    sendCardAlarmNoticeTopic: topic-ezproject-send-card-alarm-message
+  consumer:
+    codeEvent:
+      topic: CARD
+      group: ezproject-consumer-ezcode-card-event
+    repoEvent:
+      topic: REPO
+      group: ezproject-consumer-ezcode-repo-event
+    cleanCardRecycleBin:
+      group: ezproject-consumer-ezproject-clean-card-recycle-bin
+    cleanCardDraft:
+      group: ezproject-consumer-ezproject-clean-card-draft
+    cleanInactivePlan:
+      group: ezproject-consumer-ezproject-clean-inactive-plan
+    billStorageBuffer:
+      group: ezproject-consumer-bill-storage-buffer
+    sendCardAlarmNotice:
+      group: ezproject-consumer-ezproject-send-card-alarm-message
+
+internal:
+{{ toYaml .Values.internal | indent 2 }}
+system:
+  code:
+    endpoint: {{ .Values.internal.ezcode.endpoint }}
+daily-incr-limit:
+{{ toYaml .Values.dailyIncrLimit | indent 2 }}
+project:
+  defaultConfig:
+    planKeepDays: {{ .Values.project.defaultConfig.planKeepDays }}

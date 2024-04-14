@@ -1,0 +1,24 @@
+properties:
+  {{- range tuple "key" "name" "description" "createUser" "lastModifyUser" }}
+  {{ . }}:
+    type: keyword
+  {{- end }}
+  {{- range tuple "companyId" "topScore" }}
+  {{ . }}:
+    type: long
+  {{- end }}
+  {{- range tuple "createTime" "lastModifyTime" "startTime" "endTime" }}
+  {{ . }}:
+    type: date
+    format: epoch_millis
+  {{- end }}
+  {{- range tuple "isActive" }}
+  {{ . }}:
+    type: boolean
+  {{- end }}
+  {{- range $i := untilStep 1 51 1 }}
+  {{- range tuple "keyword" "float" "date" }}
+  custom_{{ $i }}_{{ . }}:
+    type: {{ . }}
+  {{- end }}
+  {{- end }}

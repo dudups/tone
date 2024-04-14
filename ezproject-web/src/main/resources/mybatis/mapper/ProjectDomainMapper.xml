@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezone.ezproject.dal.mapper.ProjectDomainMapper">
+  <resultMap id="BaseResultMap" type="com.ezone.ezproject.dal.entity.ProjectDomain">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="max_seq_num" jdbcType="BIGINT" property="maxSeqNum" />
+    <result column="max_rank" jdbcType="VARCHAR" property="maxRank" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    `id`, `max_seq_num`, `max_rank`
+  </sql>
+  <select id="selectByExample" parameterType="com.ezone.ezproject.dal.entity.ProjectDomainExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from project_domain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from project_domain
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from project_domain
+    where `id` = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ezone.ezproject.dal.entity.ProjectDomainExample">
+    delete from project_domain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ezone.ezproject.dal.entity.ProjectDomain">
+    insert into project_domain (`id`, `max_seq_num`, `max_rank`
+      )
+    values (#{id,jdbcType=BIGINT}, #{maxSeqNum,jdbcType=BIGINT}, #{maxRank,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ezone.ezproject.dal.entity.ProjectDomain">
+    insert into project_domain
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="maxSeqNum != null">
+        `max_seq_num`,
+      </if>
+      <if test="maxRank != null">
+        `max_rank`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="maxSeqNum != null">
+        #{maxSeqNum,jdbcType=BIGINT},
+      </if>
+      <if test="maxRank != null">
+        #{maxRank,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ezone.ezproject.dal.entity.ProjectDomainExample" resultType="java.lang.Long">
+    select count(*) from project_domain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update project_domain
+    <set>
+      <if test="record.id != null">
+        `id` = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.maxSeqNum != null">
+        `max_seq_num` = #{record.maxSeqNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.maxRank != null">
+        `max_rank` = #{record.maxRank,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update project_domain
+    set `id` = #{record.id,jdbcType=BIGINT},
+      `max_seq_num` = #{record.maxSeqNum,jdbcType=BIGINT},
+      `max_rank` = #{record.maxRank,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ezone.ezproject.dal.entity.ProjectDomain">
+    update project_domain
+    <set>
+      <if test="maxSeqNum != null">
+        `max_seq_num` = #{maxSeqNum,jdbcType=BIGINT},
+      </if>
+      <if test="maxRank != null">
+        `max_rank` = #{maxRank,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ezone.ezproject.dal.entity.ProjectDomain">
+    update project_domain
+    set `max_seq_num` = #{maxSeqNum,jdbcType=BIGINT},
+      `max_rank` = #{maxRank,jdbcType=VARCHAR}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

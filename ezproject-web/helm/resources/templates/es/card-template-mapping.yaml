@@ -1,0 +1,37 @@
+{{- define "card-template-mapping" }}
+properties:
+  {{- range tuple "type" "title" "status" "owner_users" "content" "create_user" "last_modify_user" "priority" "importance" "follow_users" "external_follow_users" "repo" "bug_discovery_stage" "bug_maker" "bug_discovery_version" "bug_solution" }}
+  {{ . }}:
+    type: keyword
+    index: false
+  {{- end }}
+  {{- range tuple "estimate_workload" "remain_workload" "actual_workload" }}
+  {{ . }}:
+    type: float
+    index: false
+  {{- end }}
+  {{- range tuple "start_date" "end_date" "create_time" "last_modify_time"  }}
+  {{ . }}:
+    type: date
+    format: epoch_millis
+    index: false
+  {{- end }}
+  {{- range tuple "seq_num" "plan_id" "parent_id" "related_card_ids" "story_map_node_id" "company_id" "project_id" }}
+  {{ . }}:
+    type: long
+    index: false
+  {{- end }}
+  {{- range tuple "deleted" }}
+  {{ . }}:
+    type: boolean
+    index: false
+  {{- end }}
+  {{- range $i := untilStep 1 51 1 }}
+  {{- range tuple "keyword" "float" "date" }}
+  custom_{{ $i }}_{{ . }}:
+    type: {{ . }}
+    index: false
+  {{- end }}
+  {{- end }}
+{{- end }}
+{{- include "card-template-mapping" . }}

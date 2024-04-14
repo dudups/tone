@@ -1,0 +1,10 @@
+properties:
+  createTime:
+    type: date
+    index: true
+  user:
+    type: keyword
+    index: true
+  projectId:
+    type: long
+    index: true

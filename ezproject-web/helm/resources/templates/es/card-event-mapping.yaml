@@ -1,0 +1,23 @@
+properties:
+  id:
+    type: long
+    index: true
+  cardId:
+    type: long
+    index: true
+  {{- range tuple "date" "nextDate" }}
+  {{ . }}:
+    type: date
+    index: true
+  {{- end }}
+  {{- range tuple "user" "eventType" }}
+  {{ . }}:
+    type: keyword
+    index: true
+  {{- end }}
+  eventMsg:
+    type: object
+    dynamic: false
+  cardDetail:
+    type: object
+    {{- include "card-mapping" . | indent 4 }}

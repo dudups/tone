@@ -1,0 +1,10 @@
+properties:
+  enable:
+    type: boolean
+    index: false
+  usersType:
+    type: keyword
+    index: false
+  users:
+    type: object
+    dynamic: false

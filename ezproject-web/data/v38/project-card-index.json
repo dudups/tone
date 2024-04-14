@@ -1,0 +1,8 @@
+{
+  "properties": {
+    "last_status_modify_time" : {
+      "type" : "date",
+      "format": "epoch_millis"
+    }
+  }
+}

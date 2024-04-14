@@ -1,0 +1,484 @@
+types:
+  - key: epic
+    innerType: requirement
+    source: SYS
+    name: Epic
+    color: rgb(140, 122, 230)
+    description: 史诗是一个较大的功能或特性，可以分解为许多较小的事项。它通常需要进行多次迭代才能完全交付
+    enable: true
+    {{- define "schema.types.statuses" }}
+    statuses:
+      - key: open
+        isEnd: false
+        statusFlows:
+          - targetStatus: processing
+      - key: processing
+        isEnd: false
+        statusFlows:
+          - targetStatus: closed
+      - key: closed
+        isEnd: true
+        statusFlows: []
+    {{- end }}
+    {{- include "schema.types.statuses" . }}
+    {{- define "schema.types.fields.common" }}
+    fields:
+      {{- range tuple "owner_users" "estimate_workload" "remain_workload" }}
+      - key: {{ . }}
+        enable: true
+        statusLimits:
+        {{- range tuple "open" "processing" "closed" }}
+          - status: {{ . }}
+            limit: SUGGEST
+        {{- end }}
+      {{- end }}
+      {{- range tuple "title" "content" "type" "status" "at_users" "watch_users" "start_date" "end_date" "priority" "importance" "actual_workload" "progress" "follow_users" "external_follow_users" "plan_id" "parent_id" "related_card_ids" "story_map_node_id" }}
+      - key: {{ . }}
+        enable: true
+      {{- end }}
+    {{- end }}
+    {{- include "schema.types.fields.common" . }}
+      - key: repo
+        enable: true
+      - key: qa_owner_users
+        enable: true
+  - key: feature
+    innerType: requirement
+    source: SYS
+    name: Feature
+    color: rgb(84, 160, 255)
+    description: 通常用于介于Epic和Story粒度之间的需求定义
+    enable: true
+    {{- include "schema.types.statuses" . }}
+    {{- include "schema.types.fields.common" . }}
+      - key: repo
+        enable: true
+      - key: qa_owner_users
+        enable: true
+  - key: story
+    innerType: requirement
+    source: SYS
+    name: Story
+    color: rgb(255, 190, 118)
+    description: 通常也叫做用户故事，定义某用户角色希望通过某个功能实现什么目标，建议在一个迭代内完成
+    enable: true
+    {{- include "schema.types.statuses" . }}
+    {{- include "schema.types.fields.common" . }}
+      - key: repo
+        enable: true
+      - key: qa_owner_users
+        enable: true
+  - key: task
+    innerType: task
+    source: SYS
+    name: Task
+    color: rgb(138, 219, 78)
+    description: 通常用于指代比Story更小粒度的工作项，或者是一些非需求型工作
+    enable: true
+    {{- include "schema.types.statuses" . }}
+    {{- include "schema.types.fields.common" . }}
+      - key: repo
+        enable: true
+      - key: qa_owner_users
+        enable: true
+  - key: bug
+    innerType: bug
+    source: SYS
+    name: Bug
+    color: rgb(235, 65, 49)
+    description: 功能缺陷
+    enable: true
+    {{- include "schema.types.statuses" . }}
+    {{- include "schema.types.fields.common" . }}
+      {{- range tuple "repo" "qa_owner_users" "bug_discovery_stage" "bug_maker" "bug_discovery_version" "bug_solution" }}
+      - key: {{ . }}
+        enable: true
+      {{- end }}
+  - key: project
+    innerType: project
+    source: SYS
+    name: 项目
+    color: rgb(126, 90, 226)
+    description: 可用于对项目的管理
+    enable: false
+    {{- include "schema.types.statuses" . }}
+    {{- include "schema.types.fields.common" . }}
+  - key: transaction
+    innerType: transaction
+    source: SYS
+    name: 事务
+    color: rgb(99, 205, 218)
+    description: 通常用于非研发类项目的通用工作项
+    enable: true
+    {{- include "schema.types.statuses" . }}
+    {{- include "schema.types.fields.common" . }}
+  {{- range tuple 1 2 3 4 5 }}
+  - key: custom_{{.}}
+    innerType: {{ if le . 2}}bug{{ else if le . 4 }}task{{ else if eq . 5 }}transaction{{ end }}
+    source: SYS
+    name: {{ if eq . 1}}线上bug{{ else if eq . 2 }}线下bug{{ else if eq . 3 }}前端任务{{ else if eq . 4 }}后端任务{{ else if eq . 5 }}其他事务{{ end }}
+    color: {{ if eq . 1}}'#F48F77'{{ else if eq . 2 }}'#DC7E7E'{{ else if eq . 3 }}'#ACEBD2'{{ else if eq . 4 }}'#B5CBC2'{{ else }}'#9DE9F1'{{ end }}
+    description: 自定义扩展类型
+    enable: false
+    {{- include "schema.types.statuses" . }}
+    {{- include "schema.types.fields.common" . }}
+    {{- if le . 2 }}
+      {{- range tuple "repo" "qa_owner_users" "bug_discovery_stage" "bug_maker" "bug_discovery_version" "bug_solution" }}
+      - key: {{ . }}
+        enable: true
+      {{- end }}
+    {{- else if le . 4}}
+      - key: repo
+        enable: true
+      - key: qa_owner_users
+        enable: true
+    {{- end }}
+  {{- end }}
+statuses:
+  - key: open
+    name: 新建
+    description: 新建
+    source: SYS
+  - key: processing
+    name: 进行中
+    description: 进行中
+    source: SYS
+  - key: closed
+    name: 已完成
+    description: 已完成
+    source: SYS
+fields:
+  - key: seq_num
+    name: 编号
+    source: SYS
+    type: LONG
+    valueType: LONG
+    limit: BUILD_IN
+  - key: type
+    name: 卡片类型
+    source: SYS
+    type: SELECT
+    valueType: STRING
+    limit: BUILD_IN
+  - key: title
+    name: 标题
+    source: SYS
+    type: LINE
+    valueType: STRING
+    limit: BUILD_IN
+  - key: status
+    name: 流程状态
+    source: SYS
+    type: LINE
+    valueType: STRING
+    limit: BUILD_IN
+  - key: owner_users
+    name: 负责人
+    source: SYS
+    type: MEMBERS
+    valueType: STRINGS
+    limit: REQUIRED
+  - key: at_users
+    name: 提到人
+    source: SYS
+    type: USERS
+    valueType: STRINGS
+    limit: BUILD_IN
+  - key: watch_users
+    name: 订阅人
+    source: SYS
+    type: USERS
+    valueType: STRINGS
+    limit: BUILD_IN
+  - key: qa_owner_users
+    name: 测试负责人
+    source: SYS
+    type: MEMBERS
+    valueType: STRINGS
+    limit: OPTIONAL
+  - key: start_date
+    name: 计划开始时间
+    source: SYS
+    type: DATE
+    valueType: DATE
+    limit: OPTIONAL
+  - key: end_date
+    name: 计划完成时间
+    source: SYS
+    type: DATE
+    valueType: DATE
+    limit: OPTIONAL
+  - key: bpm_flow_id
+    name: bpm审批流
+    source: SYS
+    type: SELECT
+    valueType: LONG
+    limit: BUILD_IN
+  - key: bpm_flow_to_status
+    name: bpm审批目标状态
+    source: SYS
+    type: SELECT
+    valueType: STRING
+    limit: BUILD_IN
+  - key: plan_id
+    name: 所属计划
+    source: SYS
+    type: SELECT
+    valueType: LONG
+    limit: BUILD_IN
+  - key: plan_is_active
+    name: 所在计划是否活跃
+    source: SYS
+    type: BOOLEAN
+    valueType: BOOLEAN
+    limit: BUILD_IN
+  - key: project_is_active
+    name: 所属项目是否活跃
+    source: SYS
+    type: BOOLEAN
+    valueType: BOOLEAN
+    limit: BUILD_IN
+  - key: parent_id
+    name: 父卡片
+    source: SYS
+    type: SELECT
+    valueType: LONG
+    limit: BUILD_IN
+  - key: company_id
+    name: 公司
+    source: SYS
+    type: SELECT
+    valueType: LONG
+    limit: BUILD_IN
+  - key: project_id
+    name: 项目
+    source: SYS
+    type: SELECT
+    valueType: LONG
+    limit: BUILD_IN
+  - key: content
+    name: 内容
+    source: SYS
+    type: LINES
+    valueType: STRING
+    limit: REQUIRED
+  - key: create_user
+    name: 创建人
+    source: SYS
+    type: USER
+    valueType: STRING
+    limit: BUILD_IN
+  - key: create_time
+    name: 创建时间
+    source: SYS
+    type: DATE_TIME
+    valueType: DATE
+    limit: BUILD_IN
+  - key: last_modify_user
+    name: 最后修改人
+    source: SYS
+    type: USER
+    valueType: STRING
+    limit: BUILD_IN
+  - key: last_modify_time
+    name: 最后修改时间
+    source: SYS
+    type: DATE_TIME
+    valueType: DATE
+    limit: BUILD_IN
+  - key: deleted
+    name: 是否被删除
+    source: SYS
+    type: BOOLEAN
+    valueType: BOOLEAN
+    limit: BUILD_IN
+  - key: blocked
+    name: 是否阻塞
+    source: SYS
+    type: BOOLEAN
+    valueType: BOOLEAN
+    limit: BUILD_IN
+  - key: blocked_remark
+    name: 阻塞说明
+    source: SYS
+    type: LINES
+    valueType: STRING
+    limit: BUILD_IN
+  - key: related_card_ids
+    name: 关联卡片
+    source: SYS
+    type: LONGS
+    valueType: LONGS
+    limit: BUILD_IN
+  - key: priority
+    name: 优先级
+    source: SYS
+    type: SELECT
+    valueType: STRING
+    options:
+      - key: option_1
+        name: P0
+        description: 最高
+      - key: option_2
+        name: P1
+        description: 较高
+      - key: option_3
+        name: P2
+        description: 普通
+      - key: option_4
+        name: P3
+        description: 较低
+    limit: OPTIONAL
+  - key: importance
+    name: 重要程度
+    source: SYS
+    type: SELECT
+    valueType: STRING
+    options:
+      - key: option_1
+        name: 关键
+      - key: option_2
+        name: 重要
+      - key: option_3
+        name: 一般
+      - key: option_4
+        name: 轻微
+    limit: OPTIONAL
+  - key: estimate_workload
+    name: 估算工时
+    source: SYS
+    type: FLOAT
+    valueType: FLOAT
+    limit: OPTIONAL
+  - key: remain_workload
+    name: 剩余工时
+    source: SYS
+    type: FLOAT
+    valueType: FLOAT
+    limit: OPTIONAL
+  - key: actual_workload
+    name: 实际工时
+    source: SYS
+    type: FLOAT
+    valueType: FLOAT
+    limit: OPTIONAL
+  - key: progress
+    name: 进度
+    description: 百分比[0-100]
+    source: SYS
+    type: LONG
+    valueType: LONG
+    limit: OPTIONAL
+  - key: follow_users
+    name: 关注人
+    source: SYS
+    type: USERS
+    valueType: STRINGS
+    limit: OPTIONAL
+  - key: external_follow_users
+    name: 项目外干系人
+    source: SYS
+    type: USERS
+    valueType: STRINGS
+    limit: OPTIONAL
+  - key: story_map_node_id
+    name: 分类
+    source: SYS
+    type: SELECT
+    valueType: STRING
+    limit: REQUIRED
+  - key: repo
+    name: 代码库
+    source: SYS
+    type: LINE
+    valueType: STRING
+    limit: OPTIONAL
+  - key: bug_discovery_stage
+    name: 发现阶段
+    source: SYS
+    type: SELECT
+    valueType: STRING
+    options:
+      - key: option_1
+        name: 开发自测
+      - key: option_2
+        name: 自动化测试
+      - key: option_3
+        name: QA验证
+      - key: option_4
+        name: 小流量
+      - key: option_5
+        name: 全量
+    limit: OPTIONAL
+  - key: bug_maker
+    name: 引入者
+    source: SYS
+    type: MEMBERS
+    valueType: STRINGS
+    limit: OPTIONAL
+  - key: bug_discovery_version
+    name: 发现版本
+    source: SYS
+    type: LINE
+    valueType: STRING
+    limit: OPTIONAL
+  - key: bug_solution
+    name: 解决方案
+    source: SYS
+    type: SELECT
+    valueType: STRING
+    options:
+      - key: option_1
+        name: 已解决
+      - key: option_2
+        name: 未解决
+      - key: option_3
+        name: 以后解决
+      - key: option_4
+        name: 不是Bug
+      - key: option_5
+        name: 未复现
+    limit: OPTIONAL
+  - key: first_plan_id
+    name: 最早所属计划
+    source: SYS
+    type: SELECT
+    valueType: STRING
+    limit: BUILD_IN
+  - key: last_end_time
+    name: 最近完成时间
+    source: SYS
+    type: DATE_TIME
+    valueType: LONG
+    limit: BUILD_IN
+  - key: last_end_delay
+    name: 最近完成是否延期
+    source: SYS
+    type: BOOLEAN
+    valueType: BOOLEAN
+    limit: BUILD_IN
+  - key: inner_type
+    name: 内置卡片类型
+    source: SYS
+    type: SELECT
+    valueType: STRING
+    limit: BUILD_IN
+  - key: last_status_modify_time
+    name: 状态最后更新时间
+    source: SYS
+    type: DATE_TIME
+    valueType: LONG
+    limit: BUILD_IN
+orderOfTypes:
+  - project
+  - epic
+  - feature
+  - story
+  - task
+  - custom_3
+  - custom_4
+  - bug
+  - custom_1
+  - custom_2
+  - transaction
+  - custom_5

@@ -1,0 +1,147 @@
+sysMemberFixedOps:
+  - PROJECT_READ
+  - PROJECT_MANAGE_UPDATE
+customMemberFixedOps:
+  - PROJECT_READ
+  - PROJECT_MANAGE_UPDATE
+guestCustomOps:
+  - PROJECT_MANAGE_READ
+  - CARD_CREATE
+  - CARD_UPDATE
+  - CARD_DELETE
+  - CARD_COMMENT
+groups:
+  - name: 基础权限
+    operations:
+      - key: PROJECT_READ
+        name: 查看
+        tooltip: 勾选此选项即可对项目管理中的概览、产品规划、计划与看板、甘特图、卡片管理、自定义报表、回收站、卡片详情有查看权限
+        configType: ENABLE
+        guestEnable: true
+        guestLimit: false
+  - name: 项目管理
+    operations:
+      - key: PROJECT_MANAGE_READ
+        name: 查看
+        tooltip: 勾选此选项即可对项目管理的设置中的信息有查看权限
+        configType: ENABLE
+        guestEnable: false
+        guestLimit: false
+      - key: PROJECT_MANAGE_UPDATE
+        name: 设置
+        tooltip: 勾选此选项即可对项目管理的设置进行修改
+        configType: ENABLE
+        memberEnable: false
+        guestEnable: false
+        guestLimit: false
+  - name: 卡片
+    operations:
+      - key: CARD_CREATE
+        name: 创建
+        configType: CARD_TYPES
+        guestLimit: true
+      - key: CARD_UPDATE
+        name: 编辑
+        tooltip: 勾选此选项即有卡片的状态、所属计划、内容部分、字段部分、解除子卡片的关联附件的上传、下载、删除权限、关联卡片、接口、测试用例、测试执行添加关联以及解除关联的权限
+        configType: ENABLE
+        guestLimit: true
+      - key: CARD_SORT
+        name: 排序
+        tooltip: 对计划与看板中列表视图的卡片进行排序的权限
+        configType: ENABLE
+        guestEnable: false
+        guestLimit: false
+      - key: CARD_DELETE
+        name: 删除
+        configType: CARD_TYPES
+        guestEnable: false
+        guestLimit: true
+      - key: CARD_COMMENT
+        name: 评论
+        tooltip: 勾选此选项即可有卡片详情页有评论、编辑评论、回复评论、删除评论的权限
+        configType: ENABLE
+        guestEnable: true
+        guestLimit: false
+      - key: CARD_RECOVERY
+        name: 还原
+        tooltip: 勾选此选项即可有回收站中还原卡片的权限
+        configType: ENABLE
+        memberEnable: false
+        guestEnable: false
+        guestLimit: false
+  - name: 产品规划
+    operations:
+      - key: STORY_MAP_CREATE
+        name: 新建/编辑
+        tooltip: 勾选此选项即可有产品规划的规划板和分类新建和编辑权限
+        configType: ENABLE
+        guestEnable: false
+        guestLimit: false
+      - key: STORY_MAP_DELETE
+        name: 删除
+        tooltip: 勾选此选项即可对产品规划的规划板和分类有删除的权限
+        configType: ENABLE
+        guestEnable: false
+        guestLimit: false
+  - name: 计划/子计划
+    operations:
+      - key: PLAN_CREATE
+        name: 创建
+        configType: ENABLE
+        guestEnable: false
+        guestLimit: false
+      - key: PLAN_UPDATE
+        name: 编辑
+        configType: ENABLE
+        guestEnable: false
+        guestLimit: false
+      - key: PLAN_DELETE
+        name: 删除
+        configType: ENABLE
+        guestEnable: false
+        guestLimit: false
+      - key: PLAN_INACTIVE
+        name: 归档
+        configType: ENABLE
+        guestEnable: false
+        guestLimit: false
+      - key: PLAN_RECOVERY
+        name: 还原
+        tooltip: 勾选此选项即可对归档的计划有还原的权限
+        configType: ENABLE
+        guestEnable: false
+        guestLimit: false
+  - name: 公共筛选器
+    operations:
+      - key: CARD_VIEW_CREATE
+        name: 创建
+        configType: ENABLE
+        guestEnable: false
+        guestLimit: false
+      - key: CARD_VIEW_UPDATE
+        name: 编辑
+        configType: ENABLE
+        guestEnable: false
+        guestLimit: false
+      - key: CARD_VIEW_DELETE
+        name: 删除
+        configType: ENABLE
+        guestEnable: false
+        guestLimit: false
+  - name: 报表/组
+    operations:
+      - key: CHART_CREATE
+        name: 创建
+        configType: ENABLE
+        guestEnable: false
+        guestLimit: false
+      - key: CHART_UPDATE
+        name: 编辑
+        configType: ENABLE
+        guestEnable: false
+        guestLimit: false
+      - key: CHART_DELETE
+        name: 删除
+        configType: ENABLE
+        guestEnable: false
+        guestLimit: false

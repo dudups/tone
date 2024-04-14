@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezone.ezproject.dal.mapper.ProjectFavouriteMapper">
+  <resultMap id="BaseResultMap" type="com.ezone.ezproject.dal.entity.ProjectFavourite">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user" jdbcType="VARCHAR" property="user" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    `id`, `user`, `time`, `company_id`, `project_id`
+  </sql>
+  <select id="selectByExample" parameterType="com.ezone.ezproject.dal.entity.ProjectFavouriteExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from project_favourite
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from project_favourite
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from project_favourite
+    where `id` = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ezone.ezproject.dal.entity.ProjectFavouriteExample">
+    delete from project_favourite
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ezone.ezproject.dal.entity.ProjectFavourite">
+    insert into project_favourite (`id`, `user`, `time`, 
+      `company_id`, `project_id`)
+    values (#{id,jdbcType=BIGINT}, #{user,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
+      #{companyId,jdbcType=BIGINT}, #{projectId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ezone.ezproject.dal.entity.ProjectFavourite">
+    insert into project_favourite
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="user != null">
+        `user`,
+      </if>
+      <if test="time != null">
+        `time`,
+      </if>
+      <if test="companyId != null">
+        `company_id`,
+      </if>
+      <if test="projectId != null">
+        `project_id`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="user != null">
+        #{user,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ezone.ezproject.dal.entity.ProjectFavouriteExample" resultType="java.lang.Long">
+    select count(*) from project_favourite
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update project_favourite
+    <set>
+      <if test="record.id != null">
+        `id` = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.user != null">
+        `user` = #{record.user,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time != null">
+        `time` = #{record.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.companyId != null">
+        `company_id` = #{record.companyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.projectId != null">
+        `project_id` = #{record.projectId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update project_favourite
+    set `id` = #{record.id,jdbcType=BIGINT},
+      `user` = #{record.user,jdbcType=VARCHAR},
+      `time` = #{record.time,jdbcType=TIMESTAMP},
+      `company_id` = #{record.companyId,jdbcType=BIGINT},
+      `project_id` = #{record.projectId,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ezone.ezproject.dal.entity.ProjectFavourite">
+    update project_favourite
+    <set>
+      <if test="user != null">
+        `user` = #{user,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        `time` = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="companyId != null">
+        `company_id` = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null">
+        `project_id` = #{projectId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ezone.ezproject.dal.entity.ProjectFavourite">
+    update project_favourite
+    set `user` = #{user,jdbcType=VARCHAR},
+      `time` = #{time,jdbcType=TIMESTAMP},
+      `company_id` = #{companyId,jdbcType=BIGINT},
+      `project_id` = #{projectId,jdbcType=BIGINT}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,37 @@
+properties:
+  plan:
+    type: object
+    properties:
+      isOpen:
+        type: boolean
+        index: false
+      notifyScope:
+        type: keyword
+        index: false
+      usersType:
+        type: keyword
+        index: false
+      users:
+        type: object
+        dynamic: false
+  card:
+    type: object
+    properties:
+      isOpen:
+        type: boolean
+        index: false
+      notifyScope:
+        type: keyword
+        index: false
+      usersType:
+        type: keyword
+        index: false
+      users:
+        type: object
+        dynamic: false
+  lastModifyUser:
+    type: keyword
+    index: false
+  last_modify_time:
+    type: date
+    format: epoch_millis

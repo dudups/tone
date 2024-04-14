@@ -1,0 +1,65 @@
+---
+# Source: resources/templates/sys-custom-role-schema.yaml
+roles:
+  - key: MEMBER
+    name: 项目成员
+    source: SYS
+    type: MEMBER
+    operations:
+      PROJECT_READ:
+        enable: true
+      PROJECT_MANAGE_READ:
+        enable: true
+      STORY_MAP_CREATE:
+        enable: true
+      STORY_MAP_DELETE:
+        enable: true
+      CHART_CREATE:
+        enable: true
+      CHART_UPDATE:
+        enable: true
+      CHART_DELETE:
+        enable: true
+      CARD_VIEW_CREATE:
+        enable: true
+      CARD_VIEW_UPDATE:
+        enable: true
+      PLAN_CREATE:
+        enable: true
+      PLAN_UPDATE:
+        enable: true
+      PLAN_DELETE:
+        enable: true
+      PLAN_INACTIVE:
+        enable: true
+      PLAN_RECOVERY:
+        enable: true
+      CARD_CREATE:
+        enable: true
+      CARD_UPDATE:
+        enable: true
+      CARD_SORT:
+        enable: true
+      CARD_DELETE:
+        enable: true
+      CARD_RECOVERY:
+        enable: true
+      CARD_COMMENT:
+        enable: true
+  - key: GUEST
+    name: 访客
+    source: SYS
+    type: GUEST
+    operations:
+      PROJECT_READ:
+        enable: true
+      PROJECT_MANAGE_READ:
+        enable: true
+      CARD_CREATE:
+        cardTypes:
+          - story
+          - bug
+      CARD_DELETE:
+        cardTypes:
+          - story
+          - bug

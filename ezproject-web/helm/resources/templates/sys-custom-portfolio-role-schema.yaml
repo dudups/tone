@@ -1,0 +1,10 @@
+roles:
+  - key: MEMBER
+    name: 项目集成员
+    source: SYS
+    type: MEMBER
+    operations:
+      {{- range tuple "PORTFOLIO_READ" "REPORT_CREATE" "REPORT_UPDATE" "REPORT_DELETE" }}
+      {{ . }}:
+        enable: true
+      {{- end }}

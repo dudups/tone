@@ -1,0 +1,1 @@
+helm template ezproject ../ezproject | grep -v helm.sh | grep -v app.kubernetes.io/version | grep -v app.kubernetes.io/managed-by

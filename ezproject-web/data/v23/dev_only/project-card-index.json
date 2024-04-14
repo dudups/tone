@@ -1,0 +1,596 @@
+{
+  "settings": {
+    "index": {
+      "analysis": {
+        "normalizer": {
+          "lowercase": {
+            "filter": [
+              "lowercase",
+              "asciifolding"
+            ],
+            "type": "custom",
+            "char_filter": []
+          }
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "type": {
+        "type": "keyword"
+      },
+      "inner_type": {
+        "type": "keyword"
+      },
+      "status": {
+        "type": "keyword"
+      },
+      "owner_users": {
+        "type": "keyword"
+      },
+      "at_users": {
+        "type": "keyword"
+      },
+      "watch_users": {
+        "type": "keyword"
+      },
+      "create_user": {
+        "type": "keyword"
+      },
+      "last_modify_user": {
+        "type": "keyword"
+      },
+      "priority": {
+        "type": "keyword"
+      },
+      "importance": {
+        "type": "keyword"
+      },
+      "follow_users": {
+        "type": "keyword"
+      },
+      "external_follow_users": {
+        "type": "keyword"
+      },
+      "qa_owner_users": {
+        "type": "keyword"
+      },
+      "repo": {
+        "type": "keyword"
+      },
+      "bug_discovery_stage": {
+        "type": "keyword"
+      },
+      "bug_maker": {
+        "type": "keyword"
+      },
+      "bug_discovery_version": {
+        "type": "keyword"
+      },
+      "bug_solution": {
+        "type": "keyword"
+      },
+      "title": {
+        "type": "keyword"
+      },
+      "content": {
+        "type": "keyword"
+      },
+      "blocked_remark": {
+        "type": "keyword"
+      },
+      "estimate_workload": {
+        "type": "float"
+      },
+      "remain_workload": {
+        "type": "float"
+      },
+      "actual_workload": {
+        "type": "float"
+      },
+      "start_date": {
+        "type": "date",
+        "format": "epoch_millis"
+      },
+      "end_date": {
+        "type": "date",
+        "format": "epoch_millis"
+      },
+      "create_time": {
+        "type": "date",
+        "format": "epoch_millis"
+      },
+      "last_modify_time": {
+        "type": "date",
+        "format": "epoch_millis"
+      },
+      "seq_num": {
+        "type": "long"
+      },
+      "plan_id": {
+        "type": "long"
+      },
+      "first_plan_id": {
+        "type": "long"
+      },
+      "parent_id": {
+        "type": "long"
+      },
+      "related_card_ids": {
+        "type": "long"
+      },
+      "story_map_node_id": {
+        "type": "long"
+      },
+      "company_id": {
+        "type": "long"
+      },
+      "project_id": {
+        "type": "long"
+      },
+      "deleted": {
+        "type": "boolean"
+      },
+      "calc_is_end": {
+        "type": "boolean"
+      },
+      "plan_is_active": {
+        "type": "boolean"
+      },
+      "blocked": {
+        "type": "boolean"
+      },
+      "custom_1_keyword": {
+        "type": "keyword"
+      },
+      "custom_1_float": {
+        "type": "float"
+      },
+      "custom_1_date": {
+        "type": "date"
+      },
+      "custom_2_keyword": {
+        "type": "keyword"
+      },
+      "custom_2_float": {
+        "type": "float"
+      },
+      "custom_2_date": {
+        "type": "date"
+      },
+      "custom_3_keyword": {
+        "type": "keyword"
+      },
+      "custom_3_float": {
+        "type": "float"
+      },
+      "custom_3_date": {
+        "type": "date"
+      },
+      "custom_4_keyword": {
+        "type": "keyword"
+      },
+      "custom_4_float": {
+        "type": "float"
+      },
+      "custom_4_date": {
+        "type": "date"
+      },
+      "custom_5_keyword": {
+        "type": "keyword"
+      },
+      "custom_5_float": {
+        "type": "float"
+      },
+      "custom_5_date": {
+        "type": "date"
+      },
+      "custom_6_keyword": {
+        "type": "keyword"
+      },
+      "custom_6_float": {
+        "type": "float"
+      },
+      "custom_6_date": {
+        "type": "date"
+      },
+      "custom_7_keyword": {
+        "type": "keyword"
+      },
+      "custom_7_float": {
+        "type": "float"
+      },
+      "custom_7_date": {
+        "type": "date"
+      },
+      "custom_8_keyword": {
+        "type": "keyword"
+      },
+      "custom_8_float": {
+        "type": "float"
+      },
+      "custom_8_date": {
+        "type": "date"
+      },
+      "custom_9_keyword": {
+        "type": "keyword"
+      },
+      "custom_9_float": {
+        "type": "float"
+      },
+      "custom_9_date": {
+        "type": "date"
+      },
+      "custom_10_keyword": {
+        "type": "keyword"
+      },
+      "custom_10_float": {
+        "type": "float"
+      },
+      "custom_10_date": {
+        "type": "date"
+      },
+      "custom_11_keyword": {
+        "type": "keyword"
+      },
+      "custom_11_float": {
+        "type": "float"
+      },
+      "custom_11_date": {
+        "type": "date"
+      },
+      "custom_12_keyword": {
+        "type": "keyword"
+      },
+      "custom_12_float": {
+        "type": "float"
+      },
+      "custom_12_date": {
+        "type": "date"
+      },
+      "custom_13_keyword": {
+        "type": "keyword"
+      },
+      "custom_13_float": {
+        "type": "float"
+      },
+      "custom_13_date": {
+        "type": "date"
+      },
+      "custom_14_keyword": {
+        "type": "keyword"
+      },
+      "custom_14_float": {
+        "type": "float"
+      },
+      "custom_14_date": {
+        "type": "date"
+      },
+      "custom_15_keyword": {
+        "type": "keyword"
+      },
+      "custom_15_float": {
+        "type": "float"
+      },
+      "custom_15_date": {
+        "type": "date"
+      },
+      "custom_16_keyword": {
+        "type": "keyword"
+      },
+      "custom_16_float": {
+        "type": "float"
+      },
+      "custom_16_date": {
+        "type": "date"
+      },
+      "custom_17_keyword": {
+        "type": "keyword"
+      },
+      "custom_17_float": {
+        "type": "float"
+      },
+      "custom_17_date": {
+        "type": "date"
+      },
+      "custom_18_keyword": {
+        "type": "keyword"
+      },
+      "custom_18_float": {
+        "type": "float"
+      },
+      "custom_18_date": {
+        "type": "date"
+      },
+      "custom_19_keyword": {
+        "type": "keyword"
+      },
+      "custom_19_float": {
+        "type": "float"
+      },
+      "custom_19_date": {
+        "type": "date"
+      },
+      "custom_20_keyword": {
+        "type": "keyword"
+      },
+      "custom_20_float": {
+        "type": "float"
+      },
+      "custom_20_date": {
+        "type": "date"
+      },
+      "custom_21_keyword": {
+        "type": "keyword"
+      },
+      "custom_21_float": {
+        "type": "float"
+      },
+      "custom_21_date": {
+        "type": "date"
+      },
+      "custom_22_keyword": {
+        "type": "keyword"
+      },
+      "custom_22_float": {
+        "type": "float"
+      },
+      "custom_22_date": {
+        "type": "date"
+      },
+      "custom_23_keyword": {
+        "type": "keyword"
+      },
+      "custom_23_float": {
+        "type": "float"
+      },
+      "custom_23_date": {
+        "type": "date"
+      },
+      "custom_24_keyword": {
+        "type": "keyword"
+      },
+      "custom_24_float": {
+        "type": "float"
+      },
+      "custom_24_date": {
+        "type": "date"
+      },
+      "custom_25_keyword": {
+        "type": "keyword"
+      },
+      "custom_25_float": {
+        "type": "float"
+      },
+      "custom_25_date": {
+        "type": "date"
+      },
+      "custom_26_keyword": {
+        "type": "keyword"
+      },
+      "custom_26_float": {
+        "type": "float"
+      },
+      "custom_26_date": {
+        "type": "date"
+      },
+      "custom_27_keyword": {
+        "type": "keyword"
+      },
+      "custom_27_float": {
+        "type": "float"
+      },
+      "custom_27_date": {
+        "type": "date"
+      },
+      "custom_28_keyword": {
+        "type": "keyword"
+      },
+      "custom_28_float": {
+        "type": "float"
+      },
+      "custom_28_date": {
+        "type": "date"
+      },
+      "custom_29_keyword": {
+        "type": "keyword"
+      },
+      "custom_29_float": {
+        "type": "float"
+      },
+      "custom_29_date": {
+        "type": "date"
+      },
+      "custom_30_keyword": {
+        "type": "keyword"
+      },
+      "custom_30_float": {
+        "type": "float"
+      },
+      "custom_30_date": {
+        "type": "date"
+      },
+      "custom_31_keyword": {
+        "type": "keyword"
+      },
+      "custom_31_float": {
+        "type": "float"
+      },
+      "custom_31_date": {
+        "type": "date"
+      },
+      "custom_32_keyword": {
+        "type": "keyword"
+      },
+      "custom_32_float": {
+        "type": "float"
+      },
+      "custom_32_date": {
+        "type": "date"
+      },
+      "custom_33_keyword": {
+        "type": "keyword"
+      },
+      "custom_33_float": {
+        "type": "float"
+      },
+      "custom_33_date": {
+        "type": "date"
+      },
+      "custom_34_keyword": {
+        "type": "keyword"
+      },
+      "custom_34_float": {
+        "type": "float"
+      },
+      "custom_34_date": {
+        "type": "date"
+      },
+      "custom_35_keyword": {
+        "type": "keyword"
+      },
+      "custom_35_float": {
+        "type": "float"
+      },
+      "custom_35_date": {
+        "type": "date"
+      },
+      "custom_36_keyword": {
+        "type": "keyword"
+      },
+      "custom_36_float": {
+        "type": "float"
+      },
+      "custom_36_date": {
+        "type": "date"
+      },
+      "custom_37_keyword": {
+        "type": "keyword"
+      },
+      "custom_37_float": {
+        "type": "float"
+      },
+      "custom_37_date": {
+        "type": "date"
+      },
+      "custom_38_keyword": {
+        "type": "keyword"
+      },
+      "custom_38_float": {
+        "type": "float"
+      },
+      "custom_38_date": {
+        "type": "date"
+      },
+      "custom_39_keyword": {
+        "type": "keyword"
+      },
+      "custom_39_float": {
+        "type": "float"
+      },
+      "custom_39_date": {
+        "type": "date"
+      },
+      "custom_40_keyword": {
+        "type": "keyword"
+      },
+      "custom_40_float": {
+        "type": "float"
+      },
+      "custom_40_date": {
+        "type": "date"
+      },
+      "custom_41_keyword": {
+        "type": "keyword"
+      },
+      "custom_41_float": {
+        "type": "float"
+      },
+      "custom_41_date": {
+        "type": "date"
+      },
+      "custom_42_keyword": {
+        "type": "keyword"
+      },
+      "custom_42_float": {
+        "type": "float"
+      },
+      "custom_42_date": {
+        "type": "date"
+      },
+      "custom_43_keyword": {
+        "type": "keyword"
+      },
+      "custom_43_float": {
+        "type": "float"
+      },
+      "custom_43_date": {
+        "type": "date"
+      },
+      "custom_44_keyword": {
+        "type": "keyword"
+      },
+      "custom_44_float": {
+        "type": "float"
+      },
+      "custom_44_date": {
+        "type": "date"
+      },
+      "custom_45_keyword": {
+        "type": "keyword"
+      },
+      "custom_45_float": {
+        "type": "float"
+      },
+      "custom_45_date": {
+        "type": "date"
+      },
+      "custom_46_keyword": {
+        "type": "keyword"
+      },
+      "custom_46_float": {
+        "type": "float"
+      },
+      "custom_46_date": {
+        "type": "date"
+      },
+      "custom_47_keyword": {
+        "type": "keyword"
+      },
+      "custom_47_float": {
+        "type": "float"
+      },
+      "custom_47_date": {
+        "type": "date"
+      },
+      "custom_48_keyword": {
+        "type": "keyword"
+      },
+      "custom_48_float": {
+        "type": "float"
+      },
+      "custom_48_date": {
+        "type": "date"
+      },
+      "custom_49_keyword": {
+        "type": "keyword"
+      },
+      "custom_49_float": {
+        "type": "float"
+      },
+      "custom_49_date": {
+        "type": "date"
+      },
+      "custom_50_keyword": {
+        "type": "keyword"
+      },
+      "custom_50_float": {
+        "type": "float"
+      },
+      "custom_50_date": {
+        "type": "date"
+      }
+    }
+  }
+}

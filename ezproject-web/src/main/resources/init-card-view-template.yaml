@@ -1,0 +1,16 @@
+queries:
+  - field: plan_is_active
+    value: "true"
+    type: eq
+sorts:
+  - field: seq_num
+    order: desc
+fields:
+  - seq_num
+  - title
+  - create_user
+  - owner_users
+  - remain_workload
+  - type
+  - status
+  - actual_workload

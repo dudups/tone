@@ -1,0 +1,10 @@
+properties:
+  webHookId:
+    type: long
+    index: true
+  projectId:
+    type: long
+    index: true
+  eventTypes:
+    type: keyword
+    index: true

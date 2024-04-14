@@ -1,0 +1,3 @@
+---
+# Source: resources/templates/es/portfolio-config-mapping.yaml
+dynamic: false

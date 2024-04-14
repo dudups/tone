@@ -1,0 +1,75 @@
+---
+# Source: resources/templates/sys-company-card-schema.yaml
+types:
+  - key: epic
+    innerType: requirement
+    source: SYS
+    name: Epic
+    color: '#8C7AE6'
+    description: 史诗是一个较大的功能或特性，可以分解为许多较小的事项。它通常需要进行多次迭代才能完全交付
+  - key: feature
+    innerType: requirement
+    source: SYS
+    name: Feature
+    color: '#54A0FF'
+    description: 通常用于介于Epic和Story粒度之间的需求定义
+  - key: story
+    innerType: requirement
+    source: SYS
+    name: Story
+    color: '#FFBE76'
+    description: 通常也叫做用户故事，定义某用户角色希望通过某个功能实现什么目标，建议在一个迭代内完成
+  - key: task
+    innerType: task
+    source: SYS
+    name: Task
+    color: '#8ADB4E'
+    description: 通常用于指代比Story更小粒度的工作项，或者是一些非需求型工作
+  - key: bug
+    innerType: bug
+    source: SYS
+    name: Bug
+    color: '#EB4131'
+    description: 功能缺陷
+  - key: transaction
+    innerType: transaction
+    source: SYS
+    name: 事务
+    color: '#63CDDA'
+    description: 通常用于非研发类项目的通用工作项
+  - key: project
+    innerType: project
+    source: SYS
+    name: 项目
+    color: rgb(126, 90, 226)
+    description: 可用于对项目的管理
+  - key: custom_1
+    innerType: bug
+    source: SYS
+    name: 线上bug
+    color: '#F48F77'
+    description: 自定义扩展类型
+  - key: custom_2
+    innerType: bug
+    source: SYS
+    name: 线下bug
+    color: '#DC7E7E'
+    description: 自定义扩展类型
+  - key: custom_3
+    innerType: task
+    source: SYS
+    name: 前端task
+    color: '#ACEBD2'
+    description: 自定义扩展类型
+  - key: custom_4
+    innerType: task
+    source: SYS
+    name: 后端task
+    color: '#B5CBC2'
+    description: 自定义扩展类型
+  - key: custom_5
+    innerType: transaction
+    source: SYS
+    name: 其他事务
+    color: '#9DE9F1'
+    description: 自定义扩展类型

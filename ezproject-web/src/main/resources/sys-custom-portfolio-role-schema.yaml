@@ -1,0 +1,16 @@
+---
+# Source: resources/templates/sys-custom-portfolio-role-schema.yaml
+roles:
+  - key: MEMBER
+    name: 项目集成员
+    source: SYS
+    type: MEMBER
+    operations:
+      PORTFOLIO_READ:
+        enable: true
+      REPORT_CREATE:
+        enable: true
+      REPORT_UPDATE:
+        enable: true
+      REPORT_DELETE:
+        enable: true

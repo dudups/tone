@@ -1,0 +1,19 @@
+{{- if .Values.debug.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ezproject.fullname" . }}-debug
+  labels:
+    {{- include "ezproject.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.debug.service.type }}
+  ports:
+    - port: {{ .Values.debug.service.port }}
+      {{- if contains "NodePort" .Values.debug.service.type }}
+      nodePort: {{ .Values.debug.service.nodePort }}
+      {{- end }}
+      targetPort: {{ .Values.debug.service.port }}
+      protocol: TCP
+  selector:
+    {{- include "ezproject.selectorLabels" . | nindent 4 }}
+{{- end }}

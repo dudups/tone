@@ -1,0 +1,9 @@
+{
+  "properties": {
+    "content" : {
+      "type" : "keyword",
+      "normalizer": "lowercase",
+      "ignore_above": 10000
+    }
+  }
+}

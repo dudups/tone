@@ -1,0 +1,22 @@
+{
+  "mappings": {
+    "properties": {
+      "lastModifyTime": {
+        "type": "date",
+        "index": false
+      },
+      "lastModifyUser": {
+        "type": "keyword",
+        "index": false
+      },
+      "charts": {
+        "type": "keyword",
+        "index": false
+      },
+      "rightCharts": {
+        "type": "keyword",
+        "index": false
+      }
+    }
+  }
+}

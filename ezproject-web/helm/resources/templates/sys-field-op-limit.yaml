@@ -1,0 +1,28 @@
+limits:
+  {{- range tuple "start_date" "end_date" "priority" "importance" "actual_workload" "progress" "follow_users" "external_follow_users" "repo" "owner_users" "estimate_workload" "remain_workload" "qa_owner_users" "bug_discovery_stage" "bug_maker" "bug_discovery_version" "bug_solution" "blocked" "blocked_remark" }}
+  - field: {{ . }}
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+      - BATCH_UPDATE
+  {{- end }}
+  {{- range tuple "status" "title" "content" }}
+  - field: {{ . }}
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+  {{- end }}
+  {{- range tuple "parent_id" "plan_id" "story_map_node_id" }}
+  - field: {{ . }}
+    ops:
+      - CREATE
+      - UPDATE
+  {{- end }}
+  {{- range tuple "type" }}
+  - field: {{ . }}
+    ops:
+      - CREATE
+      - IMPORT
+  {{- end }}

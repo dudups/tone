@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezone.ezproject.dal.mapper.CardMapper">
+  <resultMap id="BaseResultMap" type="com.ezone.ezproject.dal.entity.Card">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="project_key" jdbcType="VARCHAR" property="projectKey" />
+    <result column="seq_num" jdbcType="BIGINT" property="seqNum" />
+    <result column="plan_id" jdbcType="BIGINT" property="planId" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="ancestor_id" jdbcType="BIGINT" property="ancestorId" />
+    <result column="rank" jdbcType="VARCHAR" property="rank" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="deleted" jdbcType="BIT" property="deleted" />
+    <result column="max_comment_seq_num" jdbcType="BIGINT" property="maxCommentSeqNum" />
+    <result column="story_map_node_id" jdbcType="BIGINT" property="storyMapNodeId" />
+    <result column="latest_event_id" jdbcType="BIGINT" property="latestEventId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    `id`, `project_id`, `project_key`, `seq_num`, `plan_id`, `parent_id`, `ancestor_id`, 
+    `rank`, `company_id`, `deleted`, `max_comment_seq_num`, `story_map_node_id`, `latest_event_id`
+  </sql>
+  <select id="selectByExample" parameterType="com.ezone.ezproject.dal.entity.CardExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from card
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from card
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from card
+    where `id` = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ezone.ezproject.dal.entity.CardExample">
+    delete from card
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ezone.ezproject.dal.entity.Card">
+    insert into card (`id`, `project_id`, `project_key`, 
+      `seq_num`, `plan_id`, `parent_id`, 
+      `ancestor_id`, `rank`, `company_id`, 
+      `deleted`, `max_comment_seq_num`, `story_map_node_id`, 
+      `latest_event_id`)
+    values (#{id,jdbcType=BIGINT}, #{projectId,jdbcType=BIGINT}, #{projectKey,jdbcType=VARCHAR}, 
+      #{seqNum,jdbcType=BIGINT}, #{planId,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, 
+      #{ancestorId,jdbcType=BIGINT}, #{rank,jdbcType=VARCHAR}, #{companyId,jdbcType=BIGINT}, 
+      #{deleted,jdbcType=BIT}, #{maxCommentSeqNum,jdbcType=BIGINT}, #{storyMapNodeId,jdbcType=BIGINT}, 
+      #{latestEventId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ezone.ezproject.dal.entity.Card">
+    insert into card
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="projectId != null">
+        `project_id`,
+      </if>
+      <if test="projectKey != null">
+        `project_key`,
+      </if>
+      <if test="seqNum != null">
+        `seq_num`,
+      </if>
+      <if test="planId != null">
+        `plan_id`,
+      </if>
+      <if test="parentId != null">
+        `parent_id`,
+      </if>
+      <if test="ancestorId != null">
+        `ancestor_id`,
+      </if>
+      <if test="rank != null">
+        `rank`,
+      </if>
+      <if test="companyId != null">
+        `company_id`,
+      </if>
+      <if test="deleted != null">
+        `deleted`,
+      </if>
+      <if test="maxCommentSeqNum != null">
+        `max_comment_seq_num`,
+      </if>
+      <if test="storyMapNodeId != null">
+        `story_map_node_id`,
+      </if>
+      <if test="latestEventId != null">
+        `latest_event_id`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="projectKey != null">
+        #{projectKey,jdbcType=VARCHAR},
+      </if>
+      <if test="seqNum != null">
+        #{seqNum,jdbcType=BIGINT},
+      </if>
+      <if test="planId != null">
+        #{planId,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="ancestorId != null">
+        #{ancestorId,jdbcType=BIGINT},
+      </if>
+      <if test="rank != null">
+        #{rank,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="maxCommentSeqNum != null">
+        #{maxCommentSeqNum,jdbcType=BIGINT},
+      </if>
+      <if test="storyMapNodeId != null">
+        #{storyMapNodeId,jdbcType=BIGINT},
+      </if>
+      <if test="latestEventId != null">
+        #{latestEventId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ezone.ezproject.dal.entity.CardExample" resultType="java.lang.Long">
+    select count(*) from card
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update card
+    <set>
+      <if test="record.id != null">
+        `id` = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.projectId != null">
+        `project_id` = #{record.projectId,jdbcType=BIGINT},
+      </if>
+      <if test="record.projectKey != null">
+        `project_key` = #{record.projectKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seqNum != null">
+        `seq_num` = #{record.seqNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.planId != null">
+        `plan_id` = #{record.planId,jdbcType=BIGINT},
+      </if>
+      <if test="record.parentId != null">
+        `parent_id` = #{record.parentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.ancestorId != null">
+        `ancestor_id` = #{record.ancestorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.rank != null">
+        `rank` = #{record.rank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null">
+        `company_id` = #{record.companyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.deleted != null">
+        `deleted` = #{record.deleted,jdbcType=BIT},
+      </if>
+      <if test="record.maxCommentSeqNum != null">
+        `max_comment_seq_num` = #{record.maxCommentSeqNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.storyMapNodeId != null">
+        `story_map_node_id` = #{record.storyMapNodeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.latestEventId != null">
+        `latest_event_id` = #{record.latestEventId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update card
+    set `id` = #{record.id,jdbcType=BIGINT},
+      `project_id` = #{record.projectId,jdbcType=BIGINT},
+      `project_key` = #{record.projectKey,jdbcType=VARCHAR},
+      `seq_num` = #{record.seqNum,jdbcType=BIGINT},
+      `plan_id` = #{record.planId,jdbcType=BIGINT},
+      `parent_id` = #{record.parentId,jdbcType=BIGINT},
+      `ancestor_id` = #{record.ancestorId,jdbcType=BIGINT},
+      `rank` = #{record.rank,jdbcType=VARCHAR},
+      `company_id` = #{record.companyId,jdbcType=BIGINT},
+      `deleted` = #{record.deleted,jdbcType=BIT},
+      `max_comment_seq_num` = #{record.maxCommentSeqNum,jdbcType=BIGINT},
+      `story_map_node_id` = #{record.storyMapNodeId,jdbcType=BIGINT},
+      `latest_event_id` = #{record.latestEventId,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ezone.ezproject.dal.entity.Card">
+    update card
+    <set>
+      <if test="projectId != null">
+        `project_id` = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="projectKey != null">
+        `project_key` = #{projectKey,jdbcType=VARCHAR},
+      </if>
+      <if test="seqNum != null">
+        `seq_num` = #{seqNum,jdbcType=BIGINT},
+      </if>
+      <if test="planId != null">
+        `plan_id` = #{planId,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null">
+        `parent_id` = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="ancestorId != null">
+        `ancestor_id` = #{ancestorId,jdbcType=BIGINT},
+      </if>
+      <if test="rank != null">
+        `rank` = #{rank,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        `company_id` = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="deleted != null">
+        `deleted` = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="maxCommentSeqNum != null">
+        `max_comment_seq_num` = #{maxCommentSeqNum,jdbcType=BIGINT},
+      </if>
+      <if test="storyMapNodeId != null">
+        `story_map_node_id` = #{storyMapNodeId,jdbcType=BIGINT},
+      </if>
+      <if test="latestEventId != null">
+        `latest_event_id` = #{latestEventId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ezone.ezproject.dal.entity.Card">
+    update card
+    set `project_id` = #{projectId,jdbcType=BIGINT},
+      `project_key` = #{projectKey,jdbcType=VARCHAR},
+      `seq_num` = #{seqNum,jdbcType=BIGINT},
+      `plan_id` = #{planId,jdbcType=BIGINT},
+      `parent_id` = #{parentId,jdbcType=BIGINT},
+      `ancestor_id` = #{ancestorId,jdbcType=BIGINT},
+      `rank` = #{rank,jdbcType=VARCHAR},
+      `company_id` = #{companyId,jdbcType=BIGINT},
+      `deleted` = #{deleted,jdbcType=BIT},
+      `max_comment_seq_num` = #{maxCommentSeqNum,jdbcType=BIGINT},
+      `story_map_node_id` = #{storyMapNodeId,jdbcType=BIGINT},
+      `latest_event_id` = #{latestEventId,jdbcType=BIGINT}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

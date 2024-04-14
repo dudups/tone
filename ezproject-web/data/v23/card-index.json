@@ -1,0 +1,8 @@
+{
+  "properties" : {
+    "inner_type": {
+      "type": "keyword",
+      "normalizer": "lowercase"
+    }
+  }
+}

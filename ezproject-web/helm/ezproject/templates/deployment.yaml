@@ -1,0 +1,96 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ezproject.fullname" . }}
+  labels:
+    {{- include "ezproject.labels" . | nindent 4 }}
+spec:
+{{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+{{- end }}
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      {{- include "ezproject.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+    {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      labels:
+        {{- include "ezproject.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "ezproject.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - name: {{ .Values.pv.name }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.pv.name }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          args:
+            - {{ .Values.app.profile }}
+          env:
+            {{- toYaml .Values.envs | nindent 12 }}
+{{- if .Values.debug.enabled }}
+            - name: JAVA_DEBUG_OPTS
+              value: -Xdebug -Xrunjdwp:transport=dt_socket,address={{ .Values.debug.service.port }},server=y,suspend=n
+{{- end }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+            - mountPath: /app/logs
+              name: {{ .Values.pv.name }}
+              subPath: ezproject/logs
+            - mountPath: /app/storage
+              name: {{ .Values.pv.name }}
+              subPath: ezproject/storage
+          ports:
+            - name: http
+              containerPort: 8501
+              protocol: TCP
+            - name: debug
+              containerPort: 8509
+              protocol: TCP
+{{- if not .Values.debug.enabled }}
+          livenessProbe:
+            httpGet:
+              path: /ok
+              port: 8501
+            failureThreshold: 3
+            initialDelaySeconds: 90
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 3
+{{- end }}
+          readinessProbe:
+            httpGet:
+              path: /ok
+              port: 8501
+            failureThreshold: 6
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 3
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

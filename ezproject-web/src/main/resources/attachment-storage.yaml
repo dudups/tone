@@ -1,0 +1,8 @@
+---
+# Source: config_derive/templates/attachment-storage.yaml
+{
+  "fileStorage": {
+    "rootPath": "ws/ezproject"
+  },
+  "selector": "fileStorage"
+}

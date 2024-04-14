@@ -1,0 +1,148 @@
+---
+# Source: resources/templates/sys-field-op-limit.yaml
+limits:
+  - field: start_date
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+      - BATCH_UPDATE
+  - field: end_date
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+      - BATCH_UPDATE
+  - field: priority
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+      - BATCH_UPDATE
+  - field: importance
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+      - BATCH_UPDATE
+  - field: actual_workload
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+      - BATCH_UPDATE
+  - field: progress
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+      - BATCH_UPDATE
+  - field: follow_users
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+      - BATCH_UPDATE
+  - field: external_follow_users
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+      - BATCH_UPDATE
+  - field: repo
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+      - BATCH_UPDATE
+  - field: owner_users
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+      - BATCH_UPDATE
+  - field: estimate_workload
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+      - BATCH_UPDATE
+  - field: remain_workload
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+      - BATCH_UPDATE
+  - field: qa_owner_users
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+      - BATCH_UPDATE
+  - field: bug_discovery_stage
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+      - BATCH_UPDATE
+  - field: bug_maker
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+      - BATCH_UPDATE
+  - field: bug_discovery_version
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+      - BATCH_UPDATE
+  - field: bug_solution
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+      - BATCH_UPDATE
+  - field: blocked
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+      - BATCH_UPDATE
+  - field: blocked_remark
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+      - BATCH_UPDATE
+  - field: status
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+  - field: title
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+  - field: content
+    ops:
+      - CREATE
+      - IMPORT
+      - UPDATE
+  - field: parent_id
+    ops:
+      - CREATE
+      - UPDATE
+  - field: plan_id
+    ops:
+      - CREATE
+      - UPDATE
+  - field: story_map_node_id
+    ops:
+      - CREATE
+      - UPDATE
+  - field: type
+    ops:
+      - CREATE
+      - IMPORT

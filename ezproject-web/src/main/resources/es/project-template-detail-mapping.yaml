@@ -1,0 +1,3 @@
+---
+# Source: resources/templates/es/project-template-detail-mapping.yaml
+dynamic: false

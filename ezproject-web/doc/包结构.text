@@ -1,0 +1,117 @@
+└── com
+    └── ezone
+        └── ezproject
+            ├── common 基础类库 如ID生成器等等
+            │   ├── auth 检查token权限
+            │   ├── bean 基础bean，如分页类的定义
+            │   ├── controller 控制器基础类
+            │   ├── exception 程序自定义异常
+            │   ├── function 封装函数（可缓存参数与结果）
+            │   ├── limit 对新增等接口的限制（注解）
+            │   │   └── incr
+            │   ├── serialize
+            │   ├── storage 对附件的存储，支持本地文件、ks3等
+            │   │   └── exception
+            │   ├── template 各种模板支持，如Velocity、js引擎模板、Markup模板
+            │   ├── transactional 自定义事务注解 AfterCommit
+            │   └── validate 自定义参数校验器，中文字符个数
+            ├── configuration 有关程序组件的配置
+            ├── dal  对应mysql表及操作的相关类，大部份由mybatis插件生成
+            │   ├── entity
+            │   │   └── enums
+            │   └── mapper
+            ├── es 对应es结构及操作的相关类
+            │   ├── dao es操作类
+            │   ├── entity es对应的实体类
+            │   │   ├── bean
+            │   │   └── enums
+            │   └── util es基础工具。如使用的索引名称
+            ├── external
+            │   └── ci 外部系统对接的client端
+            │       └── bean
+            ├── ez
+            │   └── context ezOne平台操作时对应的上下文相关的服务
+            └── modules 具体的project项目的模块
+                ├── attachment 附件
+                │   ├── controller 控制器（rest api接口）
+                │   └── service
+                ├── bill 账单服务
+                │   └── service 包含[计算企业级别存储使用量推送]服务
+                ├── card 卡片操作相关业务
+                │   ├── bean 卡片对应的bean
+                │   │   └── query 用于构建es查询条件
+                │   ├── clean 清理服务，如定期清理草稿、回收站卡片
+                │   ├── controller 控制器
+                │   ├── copy 卡片复制的逻辑，支持不同项目，相同项目及计划下的复制。
+                │   ├── event 卡片事件
+                │   │   ├── controller 卡片事件控制器
+                │   │   ├── helper 卡片事件的操作辅助类。包含的方法有有事件的生成等等
+                │   │   ├── model
+                │   │   └── service
+                │   ├── excel excel导入导出
+                │   ├── field 卡片字段相关
+                │   │   ├── bean 字段对应的bean，如字段变化
+                │   │   ├── check 字段修改验证类
+                │   │   └── update 字段更新具体操作
+                │   ├── rank 排序辅助
+                │   ├── service 卡片相关service服务类
+                │   ├── status 卡片状态
+                │   │   └── flow 状态流转
+                │   └── tree
+                ├── chart 报表相关
+                │   ├── bean
+                │   ├── config
+                │   │   ├── enums
+                │   │   └── range
+                │   ├── controller
+                │   ├── data
+                │   ├── enums
+                │   ├── helper
+                │   └── service
+                ├── cli 与其他系统的对接（ezCode、ezWiki...)
+                │   └── bean
+                ├── comment 评论
+                │   ├── bean
+                │   ├── service
+                │   └── web
+                ├── common 基础组件（锁、事务、端点等）
+                ├── company 企业设置相关
+                │   ├── bean
+                │   ├── controller
+                │   └── service
+                ├── event 卡片、附件、关连卡片的增删改查事件横块
+                │   └── events
+                ├── hook webhook对接。用于对接微信、叮叮、飞书等webhook，用于通知消息
+                │   ├── controller
+                │   ├── message
+                │   └── service
+                ├── notice 系统消息
+                │   └── bean 消息体、类型等定义
+                ├── permission 权限控制
+                ├── plan 计划模块
+                │   ├── bean
+                │   ├── clean
+                │   ├── controller
+                │   ├── service
+                │   └── tree
+                ├── project 项目管理模块
+                │   ├── bean
+                │   ├── controller
+                │   ├── service
+                │   └── util
+                ├── query 查询条件的保存（卡片管理菜单）
+                │   ├── bean
+                │   ├── controller
+                │   └── service
+                ├── storymap 产品规划模块
+                │   ├── controller
+                │   └── service
+                ├── swagger 文档说明
+                │   └── controller
+                ├── system 系统后台模块
+                │   ├── controller
+                │   └── service
+                └── template 项目模板模块
+                    ├── bean
+                    ├── controller
+                    └── service

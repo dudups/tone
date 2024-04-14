@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: {{ .Values.pv.name }}
+spec:
+  storageClassName: "kfs"
+  capacity:
+      storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  mountOptions:
+    - nfsvers=3
+  nfs:
+    {{- toYaml .Values.pv.nfs | nindent 4 }}

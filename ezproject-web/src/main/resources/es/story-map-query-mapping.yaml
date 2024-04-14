@@ -1,0 +1,10 @@
+properties:
+  queries:
+    type: object
+    dynamic: false
+  fields:
+    type: keyword
+    index: false
+  sorts:
+    type: object
+    dynamic: false

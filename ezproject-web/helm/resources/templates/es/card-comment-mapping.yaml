@@ -1,0 +1,24 @@
+properties:
+  {{- range tuple "id" "cardId"  }}
+  {{ . }}:
+    type: long
+    index: true
+  {{- end }}
+  {{- range tuple "seqNum" "maxSeqNum" "ancestorId" "parentId" "parentSeqNum" }}
+  {{ . }}:
+    type: long
+    index: false
+  {{- end }}
+  {{- range tuple "user" "comment" }}
+  {{ . }}:
+    type: keyword
+    index: false
+  {{- end }}
+  {{- range tuple "createTime" "lastModifyTime" }}
+  {{ . }}:
+    type: date
+    index: false
+  {{- end }}
+  deleted:
+    type: boolean
+    index: false

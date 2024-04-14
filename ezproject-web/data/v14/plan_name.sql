@@ -1,0 +1,1 @@
+ALTER TABLE `plan` MODIFY COLUMN `name` varchar(40) COLLATE utf8mb4_bin NOT NULL COMMENT '计划名';

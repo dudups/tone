@@ -1,0 +1,3 @@
+---
+# Source: resources/templates/es/portfolio-role-schema-mapping.yaml
+dynamic: false

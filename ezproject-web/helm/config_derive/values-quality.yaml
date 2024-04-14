@@ -1,0 +1,76 @@
+app:
+  env: offline
+  endpoint:
+    format: https://%s.ezone-quality.work
+server:
+  port: 8501
+logging:
+  level: TRACE
+db:
+  url: jdbc:mysql://10.1.3.5:8306/ezproject?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF8&useSSL=false&allowMultiQueries=true&rewriteBatchedStatements=true
+  username: root
+  password: ezone.work
+es:
+  uris:
+    - http://10.1.3.5:8200
+  username:
+  password:
+redis:
+  address: redis://10.1.3.5:8379
+  db: 11
+mq:
+  address: 10.1.3.5:9876
+sso:
+  endpoint: http://10.1.3.5:8008
+  interceptor:
+    exclude:
+      pattern: /monitor/**;/project/api/**;/swagger/**;/project/company/**
+ezadmin:
+  endpoint: http://10.1.3.5:9101
+  interceptor:
+    pattern: /project/company/**
+relativeEzbaseStorage:
+  rootPath: ezproject/storage
+storage:
+  selector: fileStorage
+  fileStorage:
+    rootPath: /app/storage
+internal:
+  api:
+    token: 123456
+  eztest:
+    endpoint: http://10.1.3.5:8788
+    token: 123456
+  ezcode:
+    endpoint: http://10.1.3.5:8101
+    token: 123456
+  ezdeploy:
+    endpoint: http://10.1.3.5:8401
+    token: 123456
+  ezpipeline:
+    endpoint: http://10.1.3.5:8201
+    token: 123456
+  ezwiki:
+    endpoint: http://10.1.3.5:9001
+    token: 123456
+  ezpkg:
+    endpoint: http://10.1.3.5:8388
+    token: 123456
+  ezdoc:
+    endpoint: http://ezone-quality.work/v1/ezdoc
+    token: 123456
+  ezk8s:
+    endpoint: http://10.1.3.5:8452
+    token: 123456
+  ezbpm:
+    endpoint: http://ezone-quality.work/v1/ezbase/bpm
+    token: 123456
+dailyIncrLimit:
+  company:
+    project: -1
+    portfolio: -1
+  project:
+    card: -1
+project:
+  defaultConfig:
+    planKeepDays: 0

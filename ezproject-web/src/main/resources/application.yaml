@@ -1,0 +1,129 @@
+---
+# Source: config_derive/templates/application.yaml
+application:
+  env: offline
+server:
+  port: 8501
+spring:
+  application:
+    name: ezproject-web
+  klock:
+    address: redis://10.1.0.5:6379
+    database: 4
+  datasource:
+    name: primaryDataSource
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://10.1.0.15:3306/ezproject_dev?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF8&useSSL=false&allowMultiQueries=true&rewriteBatchedStatements=true
+    username: ezproject_dev_w
+    password: N4PsyG6zgdhbdp6J
+  elasticsearch:
+    rest:
+      uris:
+        - http://10.1.2.235:30011
+      read-timeout: 5s
+      connection-timeout: 5s
+      username: 
+      password: 
+relativeEzbaseStorage:
+  rootPath: ezproject/storage
+logging:
+  level:
+    com.ezone: TRACE
+  log_level: TRACE
+api:
+  doc:
+    global:
+      header:
+        companyName: x-company-name
+es:
+  prefix: 
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml,classpath:mybatis/extmapper/*.xml
+  type-aliases-package: com.ezone.ezproject.dal.extmapper,com.ezone.ezproject.dal.mapper
+sso:
+  endpoint: http://10.1.2.2:8008
+  interceptor:
+    exclude:
+      pattern: /monitor/**;/ezProject/api/**;/swagger/**;/ezProject/company/**
+ezadmin:
+  endpoint: http://10.1.2.2:9101
+  interceptor:
+      pattern: /ezProject/company/**
+      exclude-pattern: []
+etag:
+  url:
+    pattern: /**/attachment/**/preview/**;/**/attachment/**/preview
+rocketmq:
+  name-server: 10.1.2.2:9876
+  producer:
+    group: ezproject-producer
+    cleanCardRecycleBinTopic: topic-ezproject-clean-card-recycle-bin
+    cleanCardDraftTopic: topic-ezproject-clean-card-draft
+    cleanInactivePlanTopic: topic-ezproject-clean-inactive-plan
+    noticeTopic: NOTIFICATION:SEND
+    cardEndTopic: CARD:END
+    billTopic: COMPANY_CONSUMPTION:UPDATE
+    billStorageBufferTopic: topic-ezproject-bill-storage-buffer-topic
+    companyAuditTopic: COMPANY_AUDIT:SEND
+    sendCardAlarmNoticeTopic: topic-ezproject-send-card-alarm-message
+  consumer:
+    codeEvent:
+      topic: CARD
+      group: ezproject-consumer-ezcode-card-event
+    repoEvent:
+      topic: REPO
+      group: ezproject-consumer-ezcode-repo-event
+    cleanCardRecycleBin:
+      group: ezproject-consumer-ezproject-clean-card-recycle-bin
+    cleanCardDraft:
+      group: ezproject-consumer-ezproject-clean-card-draft
+    cleanInactivePlan:
+      group: ezproject-consumer-ezproject-clean-inactive-plan
+    billStorageBuffer:
+      group: ezproject-consumer-bill-storage-buffer
+    sendCardAlarmNotice:
+      group: ezproject-consumer-ezproject-send-card-alarm-message
+
+internal:
+  api:
+    token: 123456
+  ezK8s:
+    endpoint: http://10.1.2.2:8452
+    token: 123456
+  ezbpm:
+    endpoint: https://ezone-dev.work/v1/ezbase/bpm
+    token: 123456
+  ezcode:
+    endpoint: http://10.1.2.2:8101
+    token: 123456
+  ezdeploy:
+    endpoint: http://10.1.2.2:8401
+    token: 123456
+  ezdoc:
+    endpoint: https://ezone-dev.work/v1/ezdoc
+    token: 123456
+  ezpipeline:
+    endpoint: http://10.1.2.2:8201
+    token: 123456
+  ezpkg:
+    endpoint: http://10.1.2.2:8388
+    token: 123456
+  eztest:
+    endpoint: http://10.1.2.113:31031
+    token: 123456
+  ezwiki:
+    endpoint: http://10.1.2.113:31051
+    token: 123456
+system:
+  code:
+    endpoint: http://10.1.2.2:8101
+daily-incr-limit:
+  company:
+    portfolio: -1
+    project: -1
+  project:
+    card: -1
+project:
+  defaultConfig:
+    planKeepDays: 365

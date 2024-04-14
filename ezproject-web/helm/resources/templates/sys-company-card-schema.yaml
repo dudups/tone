@@ -1,0 +1,51 @@
+types:
+  - key: epic
+    innerType: requirement
+    source: SYS
+    name: Epic
+    color: '#8C7AE6'
+    description: 史诗是一个较大的功能或特性，可以分解为许多较小的事项。它通常需要进行多次迭代才能完全交付
+  - key: feature
+    innerType: requirement
+    source: SYS
+    name: Feature
+    color: '#54A0FF'
+    description: 通常用于介于Epic和Story粒度之间的需求定义
+  - key: story
+    innerType: requirement
+    source: SYS
+    name: Story
+    color: '#FFBE76'
+    description: 通常也叫做用户故事，定义某用户角色希望通过某个功能实现什么目标，建议在一个迭代内完成
+  - key: task
+    innerType: task
+    source: SYS
+    name: Task
+    color: '#8ADB4E'
+    description: 通常用于指代比Story更小粒度的工作项，或者是一些非需求型工作
+  - key: bug
+    innerType: bug
+    source: SYS
+    name: Bug
+    color: '#EB4131'
+    description: 功能缺陷
+  - key: transaction
+    innerType: transaction
+    source: SYS
+    name: 事务
+    color: '#63CDDA'
+    description: 通常用于非研发类项目的通用工作项
+  - key: project
+    innerType: project
+    source: SYS
+    name: 项目
+    color: rgb(126, 90, 226)
+    description: 可用于对项目的管理
+  {{- range tuple 1 2 3 4 5 }}
+  - key: custom_{{.}}
+    innerType: {{ if le . 2}}bug{{ else if le . 4 }}task{{ else if eq . 5 }}transaction{{ end }}
+    source: SYS
+    name: {{ if eq . 1 }}线上bug{{ else if eq . 2 }}线下bug{{ else if eq . 3 }}前端task{{ else if eq . 4 }}后端task{{ else if eq . 5 }}其他事务{{ end }}
+    color: {{ if eq . 1}}'#F48F77'{{ else if eq . 2 }}'#DC7E7E'{{ else if eq . 3 }}'#ACEBD2'{{ else if eq . 4 }}'#B5CBC2'{{ else }}'#9DE9F1'{{ end }}
+    description: 自定义扩展类型
+  {{- end }}

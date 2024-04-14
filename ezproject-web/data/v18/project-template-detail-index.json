@@ -1,0 +1,905 @@
+{
+  "mappings": {
+    "properties": {
+      "projectCardSchema": {
+        "type": "object",
+        "properties": {
+          "types": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "keyword",
+                "index": false
+              },
+              "source": {
+                "type": "keyword",
+                "index": false
+              },
+              "name": {
+                "type": "keyword",
+                "index": false
+              },
+              "description": {
+                "type": "keyword",
+                "index": false
+              },
+              "enable": {
+                "type": "boolean",
+                "index": false
+              },
+              "statuses": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "keyword",
+                    "index": false
+                  },
+                  "isEnd": {
+                    "type": "boolean",
+                    "index": false
+                  },
+                  "statusFlows": {
+                    "type": "object",
+                    "properties": {
+                      "targetStatus": {
+                        "type": "keyword",
+                        "index": false
+                      },
+                      "notice": {
+                        "type": "boolean",
+                        "index": false
+                      },
+                      "opUserField": {
+                        "type": "keyword",
+                        "index": false
+                      }
+                    }
+                  }
+                }
+              },
+              "fields": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "keyword",
+                    "index": false
+                  },
+                  "enable": {
+                    "type": "boolean",
+                    "index": false
+                  },
+                  "statusLimits": {
+                    "type": "object",
+                    "properties": {
+                      "status": {
+                        "type": "keyword",
+                        "index": false
+                      },
+                      "limit": {
+                        "type": "keyword",
+                        "index": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "statuses": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "keyword",
+                "index": false
+              },
+              "source": {
+                "type": "keyword",
+                "index": false
+              },
+              "name": {
+                "type": "keyword",
+                "index": false
+              },
+              "description": {
+                "type": "keyword",
+                "index": false
+              }
+            }
+          },
+          "fields": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "keyword",
+                "index": false
+              },
+              "source": {
+                "type": "keyword",
+                "index": false
+              },
+              "name": {
+                "type": "keyword",
+                "index": false
+              },
+              "description": {
+                "type": "keyword",
+                "index": false
+              },
+              "type": {
+                "type": "keyword",
+                "index": false
+              },
+              "valueType": {
+                "type": "keyword",
+                "index": false
+              },
+              "limit": {
+                "type": "keyword",
+                "index": false
+              },
+              "options": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "keyword",
+                    "index": false
+                  },
+                  "description": {
+                    "type": "keyword",
+                    "index": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "projectCardTemplates": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "keyword",
+            "index": false
+          },
+          "title": {
+            "type": "keyword",
+            "index": false
+          },
+          "status": {
+            "type": "keyword",
+            "index": false
+          },
+          "owner_users": {
+            "type": "keyword",
+            "index": false
+          },
+          "content": {
+            "type": "keyword",
+            "index": false
+          },
+          "create_user": {
+            "type": "keyword",
+            "index": false
+          },
+          "last_modify_user": {
+            "type": "keyword",
+            "index": false
+          },
+          "priority": {
+            "type": "keyword",
+            "index": false
+          },
+          "importance": {
+            "type": "keyword",
+            "index": false
+          },
+          "follow_users": {
+            "type": "keyword",
+            "index": false
+          },
+          "external_follow_users": {
+            "type": "keyword",
+            "index": false
+          },
+          "repo": {
+            "type": "keyword",
+            "index": false
+          },
+          "bug_discovery_stage": {
+            "type": "keyword",
+            "index": false
+          },
+          "bug_maker": {
+            "type": "keyword",
+            "index": false
+          },
+          "bug_discovery_version": {
+            "type": "keyword",
+            "index": false
+          },
+          "bug_solution": {
+            "type": "keyword",
+            "index": false
+          },
+          "estimate_workload": {
+            "type": "float",
+            "index": false
+          },
+          "remain_workload": {
+            "type": "float",
+            "index": false
+          },
+          "actual_workload": {
+            "type": "float",
+            "index": false
+          },
+          "start_date": {
+            "type": "date",
+            "format": "epoch_millis",
+            "index": false
+          },
+          "end_date": {
+            "type": "date",
+            "format": "epoch_millis",
+            "index": false
+          },
+          "create_time": {
+            "type": "date",
+            "format": "epoch_millis",
+            "index": false
+          },
+          "last_modify_time": {
+            "type": "date",
+            "format": "epoch_millis",
+            "index": false
+          },
+          "seq_num": {
+            "type": "long",
+            "index": false
+          },
+          "plan_id": {
+            "type": "long",
+            "index": false
+          },
+          "parent_id": {
+            "type": "long",
+            "index": false
+          },
+          "related_card_ids": {
+            "type": "long",
+            "index": false
+          },
+          "story_map_node_id": {
+            "type": "long",
+            "index": false
+          },
+          "company_id": {
+            "type": "long",
+            "index": false
+          },
+          "project_id": {
+            "type": "long",
+            "index": false
+          },
+          "deleted": {
+            "type": "boolean",
+            "index": false
+          },
+          "custom_1_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_1_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_1_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_2_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_2_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_2_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_3_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_3_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_3_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_4_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_4_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_4_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_5_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_5_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_5_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_6_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_6_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_6_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_7_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_7_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_7_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_8_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_8_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_8_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_9_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_9_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_9_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_10_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_10_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_10_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_11_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_11_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_11_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_12_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_12_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_12_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_13_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_13_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_13_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_14_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_14_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_14_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_15_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_15_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_15_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_16_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_16_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_16_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_17_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_17_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_17_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_18_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_18_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_18_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_19_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_19_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_19_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_20_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_20_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_20_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_21_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_21_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_21_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_22_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_22_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_22_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_23_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_23_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_23_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_24_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_24_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_24_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_25_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_25_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_25_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_26_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_26_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_26_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_27_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_27_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_27_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_28_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_28_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_28_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_29_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_29_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_29_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_30_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_30_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_30_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_31_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_31_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_31_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_32_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_32_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_32_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_33_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_33_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_33_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_34_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_34_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_34_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_35_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_35_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_35_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_36_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_36_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_36_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_37_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_37_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_37_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_38_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_38_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_38_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_39_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_39_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_39_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_40_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_40_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_40_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_41_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_41_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_41_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_42_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_42_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_42_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_43_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_43_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_43_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_44_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_44_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_44_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_45_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_45_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_45_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_46_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_46_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_46_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_47_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_47_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_47_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_48_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_48_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_48_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_49_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_49_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_49_date": {
+            "type": "date",
+            "index": false
+          },
+          "custom_50_keyword": {
+            "type": "keyword",
+            "index": false
+          },
+          "custom_50_float": {
+            "type": "float",
+            "index": false
+          },
+          "custom_50_date": {
+            "type": "date",
+            "index": false
+          }
+        }
+      },
+      "projectSummaryConfigTemplates": {
+        "type": "object",
+        "properties": {
+          "charts": {
+            "type": "keyword",
+            "index": false
+          },
+          "rightCharts": {
+            "type": "keyword",
+            "index": false
+          }
+        }
+      }
+    }
+  }
+}

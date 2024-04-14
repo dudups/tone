@@ -1,0 +1,29 @@
+roles:
+  - key: ADMIN
+    name: 管理员
+    source: SYS
+    type: ADMIN
+  - key: MEMBER
+    name: 项目成员
+    source: SYS
+    type: MEMBER
+    operations:
+      {{- range tuple "PROJECT_READ" "PROJECT_MANAGE_READ" "STORY_MAP_CREATE" "STORY_MAP_DELETE" "CHART_CREATE" "CHART_UPDATE" "CHART_DELETE" "CARD_VIEW_CREATE" "CARD_VIEW_UPDATE" "PLAN_CREATE" "PLAN_UPDATE" "PLAN_DELETE" "PLAN_INACTIVE" "PLAN_RECOVERY" "CARD_CREATE" "CARD_UPDATE" "CARD_SORT" "CARD_DELETE" "CARD_RECOVERY" "CARD_COMMENT" }}
+      {{ . }}:
+        enable: true
+      {{- end }}
+  - key: GUEST
+    name: 访客
+    source: SYS
+    type: GUEST
+    operations:
+      {{- range tuple "PROJECT_READ" "PROJECT_MANAGE_READ" }}
+      {{ . }}:
+        enable: true
+      {{- end }}
+      {{- range tuple "CARD_CREATE" "CARD_DELETE" }}
+      {{ . }}:
+        cardTypes:
+          - story
+          - bug
+      {{- end }}

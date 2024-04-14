@@ -1,0 +1,8 @@
+{
+  "properties" : {
+    "cardDetail.blocked_remark": {
+      "type": "keyword",
+      "normalizer": "lowercase"
+    }
+  }
+}

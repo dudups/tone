@@ -1,0 +1,36 @@
+{{- define "card-mapping" }}
+properties:
+  {{- range tuple "type" "inner_type" "status" "bpm_flow_to_status" "owner_users" "at_users" "watch_users" "create_user" "last_modify_user" "priority" "importance" "follow_users" "external_follow_users" "qa_owner_users" "repo" "bug_discovery_stage" "bug_maker" "bug_discovery_version" "bug_solution" }}
+  {{ . }}:
+    type: keyword
+  {{- end }}
+  {{- range tuple "title" "content" "blocked_remark" }}
+  {{ . }}:
+    type: keyword
+    normalizer: lowercase
+  {{- end }}
+  {{- range tuple "estimate_workload" "remain_workload" "actual_workload" }}
+  {{ . }}:
+    type: float
+  {{- end }}
+  {{- range tuple "start_date" "end_date" "create_time" "last_modify_time" "last_status_modify_time" }}
+  {{ . }}:
+    type: date
+    format: epoch_millis
+  {{- end }}
+  {{- range tuple "seq_num" "plan_id" "bpm_flow_id" "first_plan_id" "parent_id" "related_card_ids" "story_map_node_id" "company_id" "project_id" "last_end_time" }}
+  {{ . }}:
+    type: long
+  {{- end }}
+  {{- range tuple "deleted" "calc_is_end" "project_is_active" "plan_is_active" "blocked" "last_end_delay" }}
+  {{ . }}:
+    type: boolean
+  {{- end }}
+  {{- range $i := untilStep 1 51 1 }}
+  {{- range tuple "keyword" "float" "date" }}
+  custom_{{ $i }}_{{ . }}:
+    type: {{ . }}
+  {{- end }}
+  {{- end }}
+{{- end}}
+{{- include "card-mapping" . }}

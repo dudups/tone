@@ -1,0 +1,8 @@
+{
+  "properties" : {
+    "cardDetail.inner_type": {
+      "type": "keyword",
+      "normalizer": "lowercase"
+    }
+  }
+}

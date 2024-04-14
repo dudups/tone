@@ -1,0 +1,8 @@
+{
+  "properties" : {
+    "blocked_remark": {
+      "type": "keyword",
+      "normalizer": "lowercase"
+    }
+  }
+}

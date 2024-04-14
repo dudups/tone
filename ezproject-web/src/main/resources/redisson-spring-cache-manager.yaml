@@ -1,0 +1,32 @@
+cache:UserProjectPermissionsService.userProjectPermissions:
+  # 5min = 5 * 60 * 1000 = 300000 ms
+  ttl: 300000
+  maxIdleTime: 0
+cache:ProjectSchemaService.getProjectCardSchema:
+  ttl: 0
+  # 1 day = 24 * 3600 * 1000 ms = 86400000 ms
+  maxIdleTime: 86400000
+cache:ProjectSchemaService.getCompanyProjectSchema:
+  ttl: 0
+  # 1 day = 24 * 3600 * 1000 ms = 86400000 ms
+  maxIdleTime: 86400000
+cache:WorkBenchService.getSearchCardRequest:
+  ttl: 0
+  # 30 day = 30 * 24 * 3600 * 1000 ms = 259200000 ms
+  maxIdleTime: 2592000000
+cache:ProjectSchemaService.getCompanyCardSchema:
+  ttl: 0
+  # 1 day = 24 * 3600 * 1000 ms = 86400000 ms
+  maxIdleTime: 86400000
+cache:ProjectSchemaService.getCompanyProjectRoleSchema:
+  ttl: 0
+  # 1 day = 24 * 3600 * 1000 ms = 86400000 ms
+  maxIdleTime: 86400000
+cache:CompanyProjectSchemaService.getCompanyWorkloadSetting:
+  ttl: 0
+  # 1 day = 24 * 3600 * 1000 ms = 86400000 ms
+  maxIdleTime: 86400000
+cache:ProjectSchemaService.getProjectWorkloadSetting:
+  ttl: 0
+  # 1 day = 24 * 3600 * 1000 ms = 86400000 ms
+  maxIdleTime: 86400000

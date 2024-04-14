@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezone.ezproject.dal.mapper.ExtPortfolioMapper">
+    <select id="selectRelPortfolioByProjectId" parameterType="java.lang.Long" resultMap="com.ezone.ezproject.dal.mapper.PortfolioMapper.BaseResultMap">
+        select P.`id`, P.`company_id`, P.`start_date`, P.`end_date`, P.`parent_id`, P.`ancestor_id`, P.`path`,
+        P.`name` from portfolio p, rel_portfolio_project r where r.portfolio_id = p.id
+        and r.project_id = #{projectId}
+    </select>
+</mapper>

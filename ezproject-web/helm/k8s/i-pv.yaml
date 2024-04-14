@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: i-kfs-pv
+spec:
+  storageClassName: "kfs"
+  capacity:
+      storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  mountOptions:
+    - nfsvers=3
+  nfs:
+    path: /share-4913b29a-5814-4036-9a2c-81e105e49a93
+    server: 10.5.0.161

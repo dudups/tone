@@ -1,0 +1,24 @@
+properties:
+  {{- range tuple "id" "cardId" "projectId" "companyId" "flowId" }}
+  {{ . }}:
+    type: long
+    index: true
+  {{- end }}
+  {{- range tuple "createTime" "startTime" "endTime" }}
+  {{ . }}:
+    type: date
+    index: true
+  {{- end }}
+  {{- range tuple "createUser" "owner" "incrResult" }}
+  {{ . }}:
+    type: keyword
+    index: true
+  {{- end }}
+  {{- range tuple "description" }}
+  {{ . }}:
+    type: text
+    index: false
+  {{- end }}
+  incrHours:
+    type: float
+    index: true

@@ -1,0 +1,97 @@
+# Default values for ezproject.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+imagePullSecrets:
+  - name: docker-snapshot-ezone.ezone-i.work
+  - name: docker-release-ezone.ezone-i.work
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths: []
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  limits:
+    cpu: 1000m
+    memory: 1000Mi
+  requests:
+    cpu: 1000m
+    memory: 1000Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+# todo unbind spec host
+nodeSelector:
+  kubernetes.io/hostname: 10.1.3.253
+
+tolerations: []
+
+affinity: {}
+
+service:
+  type: NodePort
+  port: 8501
+  nodePort: 31011
+
+image:
+  repository: docker-snapshot-ezone.ezone-i.work/ezproject/web
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "0.0.0.209"
+
+app:
+  profile: qa
+
+pvc:
+  name: qa-kfs-pvc
+
+debug:
+  enabled: true
+  service:
+    type: NodePort
+    port: 8509
+    nodePort: 31029

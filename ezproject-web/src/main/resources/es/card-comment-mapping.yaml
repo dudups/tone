@@ -1,0 +1,39 @@
+---
+# Source: resources/templates/es/card-comment-mapping.yaml
+properties:
+  id:
+    type: long
+    index: true
+  cardId:
+    type: long
+    index: true
+  seqNum:
+    type: long
+    index: false
+  maxSeqNum:
+    type: long
+    index: false
+  ancestorId:
+    type: long
+    index: false
+  parentId:
+    type: long
+    index: false
+  parentSeqNum:
+    type: long
+    index: false
+  user:
+    type: keyword
+    index: false
+  comment:
+    type: keyword
+    index: false
+  createTime:
+    type: date
+    index: false
+  lastModifyTime:
+    type: date
+    index: false
+  deleted:
+    type: boolean
+    index: false

@@ -1,0 +1,11 @@
+{
+  "msg_type": "post",
+  "content": {
+    "post": {
+      "zh_cn": {
+        "title": "$!model.escapeTitle",
+        "content": $!model.richTextContent
+      }
+    }
+  }
+}
